@@ -55,34 +55,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`REWARD` (
   PRIMARY KEY (`idREWARD`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`USER_has_REWARD`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`USER_has_REWARD` (
-  `USER_idUSER` INT NOT NULL,
-  `USER_EXERCISE_idEXERCISE` INT NOT NULL,
-  `REWARD_idREWARD` INT NOT NULL,
-  PRIMARY KEY (`USER_idUSER`, `USER_EXERCISE_idEXERCISE`, `REWARD_idREWARD`),
-  INDEX `fk_USER_has_REWARD_REWARD1_idx` (`REWARD_idREWARD` ASC) VISIBLE,
-  INDEX `fk_USER_has_REWARD_USER1_idx` (`USER_idUSER` ASC, `USER_EXERCISE_idEXERCISE` ASC) VISIBLE,
-  CONSTRAINT `fk_USER_has_REWARD_USER1`
-    FOREIGN KEY (`USER_idUSER`)
-    REFERENCES `mydb`.`USER` (`idUSER`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_USER_has_REWARD_REWARD1`
-    FOREIGN KEY (`REWARD_idREWARD`)
-    REFERENCES `mydb`.`REWARD` (`idREWARD`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`USER_has_REWARD1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`USER_has_REWARD1` (
   `USER_idUSER` INT NOT NULL,
   `USER_EXERCISE_date` VARCHAR(45) NOT NULL,
   `REWARD_idREWARD` INT NOT NULL,
