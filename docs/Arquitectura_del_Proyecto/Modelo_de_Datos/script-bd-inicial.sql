@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`REWARD` (
   PRIMARY KEY (`idREWARD`))
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 -- Table `mydb`.`USER_has_REWARD`
 -- -----------------------------------------------------
