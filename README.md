@@ -30,7 +30,7 @@ En este apartado el alumno insertará la documentación del prototipo del proyec
 
 En este apartado el alumno explicará el contenido del repositorio y de todas las carpetas relevantes del mismo.
 
-Descripción del proyecto / Stack Tecnológico / Alcance -> docs/Descripción de proyecto.pdf .
+Descripción del proyecto | Stack Tecnológico | Alcance -> docs/Descripción de proyecto.pdf .
 
 Casos de Uso -> docs/Casos de Uso/ .
 
