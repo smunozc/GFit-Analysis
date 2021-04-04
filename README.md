@@ -23,7 +23,9 @@ Este aplicativo web mostrará un análisis detallado de los datos extraidos de l
 En este apartado el alumno insertará la documentación del prototipo del proyecto (sketch, wireframe, mockup y un prototipo HTML y CSS)  que permite al cliente previsualizar el resultado final del producto que se está desarrollando.
 
 [Wireframe GFit Analysis](https://jezw6i.axshare.com)
+
 ....
+
 ....
 
 ## Estructura del Proyecto
