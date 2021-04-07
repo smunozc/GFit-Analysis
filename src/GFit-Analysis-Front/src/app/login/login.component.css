@@ -5,6 +5,11 @@
   font-weight: 300;
 }
 
+body {
+  color: white;
+  font-weight: 300;
+}
+
 .wrapper {
   background: #50a3a2;
   background: linear-gradient(to bottom right, #08b6b6 0%, #d5ffa5 100%);

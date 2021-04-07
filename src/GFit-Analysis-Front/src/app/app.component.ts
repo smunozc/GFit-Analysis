@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   title = 'GFit-Analysis-Front';
   isLogged: boolean = false;
+  isChecked: boolean = false;
 
   ngOnInit(): void {
     this.getCurrentUser();
@@ -21,7 +22,6 @@ export class AppComponent implements OnInit {
 
   getCurrentUser() {
     this.authService.isAuth().subscribe(auth => {
-
       if (auth) {
         console.log("user logged in");
         this.isLogged = true;
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
         this.router.navigate(['login']);
         this.isLogged = false;
       }
-
+      this.isChecked = true;
     });
   }
 }
