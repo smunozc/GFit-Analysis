@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, map } from 'rxjs/operators';
+// Unused imports
+// import { Observable, throwError } from 'rxjs';
+// import { catchError, retry, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class DataApiService {
     if (credential != null) {
       const url = 'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate';
 
-      // Obtain last week in miliseconds
+      // Obtain last 7 days in miliseconds
       let todayDateMilis = Date.now();
       let firstWeekDayMilis = todayDateMilis - 604800000;
 
@@ -51,6 +52,8 @@ export class DataApiService {
           }
         }
       );
+    } else {
+      console.log('La credencial es nula');
     }
   }
 }
