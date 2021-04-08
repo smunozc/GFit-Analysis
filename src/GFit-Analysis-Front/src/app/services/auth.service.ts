@@ -2,22 +2,30 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/app';
+import { DataApiService } from './data-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private dataApi: DataApiService) { }
 
   registerUser() { }
 
-  loginGoogle() { 
-    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
+  loginGoogle() {
+    // Creates the provider object.
+    let provider = new firebase.auth.GoogleAuthProvider();
+    // Additional scopes for the provider:
+    provider.addScope('https://www.googleapis.com/auth/fitness.activity.read');
+    provider.addScope('https://www.googleapis.com/auth/fitness.body.read');
+
+    this.afAuth.signInWithPopup(provider).then(
       (result) => {
         console.log(result);
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('credential', JSON.stringify(result.credential));
+        this.dataApi.getWeekDailyStepCount();
       },
       (error) => {
         // The provider's account email, can be used in case of
