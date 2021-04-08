@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartistModule } from 'ng-chartist';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -12,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Page404Component } from './page404/page404.component';
 
 import { environment } from '../environments/environment';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,16 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
-    Page404Component
+    Page404Component,
+    ChartComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.fireBaseConfig),
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartistModule
   ],
   providers: [],
   bootstrap: [AppComponent]
