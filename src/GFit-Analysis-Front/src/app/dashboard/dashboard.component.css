@@ -1,5 +1,166 @@
-.container{
-    background-color: rgb(240, 240, 240);
-    height: 1000px;
-    width: 100%;
+.contain {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+h1 {
+  margin-top: 5px;
+  text-align: center;
+}
+
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-evenly;
+  left: 0;
+  position: absolute;
+  width: 55%;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 0.5rem;
+  height: 30px;
+  left: 0;
+  position: relative;
+  width: 70%;
+}
+
+.button:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.button-selected {
+  background-color: rgb(62, 233, 255);
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1rem;
+  height: 50px;
+  left: 0;
+  position: relative;
+  width: 90%;
+}
+
+.bubble {
+  background-color: rgb(62, 233, 255);
+  border-radius: 100%;
+  display: block;
+  height: 120px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: 120px;
+  z-index: 0;
+}
+
+.bubble #select {
+  border: none;
+  left: -30px;
+  padding: 5px;
+  position: relative;
+  top: 40%;
+}
+
+#logout {
+  position: relative;
+  top: 90px;
+}
+
+.chart {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (min-width: 480px) {
+  .button {
+    font-size: 0.6rem;
+  }
+
+  .button-selected {
+    font-size: 1.1rem;
+  }
+
+  .bubble {
+    height: 150px;
+    right: 10px;
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .contain {
+    padding: 0 20px;
+  }
+
+  h1 {
+    text-align: start;
+  }
+
+  #buttons-container {
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    justify-content: space-evenly;
+    left: unset;
+    right: 20%;
+    top: 0;
+    position: absolute;
+    width: 30%;
+  }
+
+  .button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 0.5rem;
+    height: 50%;
+    left: unset;
+    top: 0;
+    position: relative;
+    width: 30%;
+  }
+
+  .button-selected {
+    background-color: rgb(62, 233, 255);
+    border: none;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 1rem;
+    height: 100%;
+    left: unset;
+    top: 0;
+    position: relative;
+    width: 50%;
+  }
+
+  .bubble {
+    height: 200px;
+    padding: 20px;
+    position: absolute;
+    right: 100px;
+    top: 0;
+    width: 200px
+  }
+
+  .bubble #select {
+    border: none;
+    left: -60px;
+    padding: 10px;
+    position: relative;
+    top: 40%;
+  }
 }

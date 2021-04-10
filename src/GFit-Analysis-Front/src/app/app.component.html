@@ -1,7 +1,8 @@
-<div *ngIf="isChecked">
-    <div *ngIf="isLogged">
+<div class="wrapper" *ngIf="isChecked">
+    <div class="navbar-container" *ngIf="isLogged">
         <app-navbar id="navbar"></app-navbar>
     </div>
-    
-    <router-outlet></router-outlet>
+    <div class="content-container">
+        <router-outlet></router-outlet>
+    </div>
 </div>
