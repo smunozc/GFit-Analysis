@@ -1,63 +1,66 @@
 import { Component, OnInit } from '@angular/core';
-import { IBarChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
+import { ILineChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
+
+export interface Chart {
+  type: ChartType;
+  data: Chartist.IChartistData;
+  options?: any;
+  responsiveOptions?: any;
+  events?: ChartEvent;
+}
 
 @Component({
   selector: 'app-chart',
   template: `
   <x-chartist
-    [type]="type"
-    [data]="data"
-    [options]="options"
-    [events]="events"
+    [type]="chart.type"
+    [data]="chart.data"
+    [options]="chart.options"
+    [events]="chart.events"
   ></x-chartist>
   `,
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
 
-  type: ChartType = 'Bar';
-  data: IChartistData = {
-    labels: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ],
-    series: [
-      [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
-      [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
-    ]
-  };
+  public chart: Chart;
+  public chartHeight: number;
 
-  options: IBarChartOptions = {
-    axisX: {
-      showGrid: false
-    },
-    height: 300
-  };
+  constructor() {
+    this.updateChartHeight();
 
-  events: ChartEvent = {
-    draw: (data) => {
-      if (data.type === 'bar') {
-        data.element.animate({
-          y2: <IChartistAnimationOptions>{
-            dur: '0.5s',
-            from: data.y1,
-            to: data.y2,
-            easing: 'easeOutQuad'
-          }
-        });
+    this.chart = {
+      data: {
+        labels: [
+          'Mon',
+          'Tue',
+          'Wed',
+          'Thu',
+          'Fri',
+          'Sat',
+          'Sun'
+        ],
+        series: [
+          [500, 4200, 30, 7000, 2500, 0, 0]
+        ]
+      },
+      type: 'Line',
+      options: {
+        low: 0,
+        showArea: true,
+        height: this.chartHeight
       }
     }
-  };
+  }
+
+  updateChartHeight() {
+    let mediaQuery = window.matchMedia("(min-width: 1024px)");
+    if (mediaQuery.matches) { // If media query matches
+      this.chartHeight = 500;
+    } else {
+      this.chartHeight = 250;
+    }
+  }
 
 }

@@ -48,6 +48,7 @@ export class AuthService {
   }
 
   logoutUser() {
+    localStorage.clear();
     return this.afAuth.signOut();
   }
 
