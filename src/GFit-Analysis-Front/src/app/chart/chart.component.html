@@ -1,1 +1,9 @@
-<p>chart works!</p>
+<div *ngIf="loaded">
+    <x-chartist
+    [type]="chart.type"
+    [data]="chart.data"
+    [options]="chart.options"
+    [events]="chart.events"
+    ></x-chartist>
+</div>
+
