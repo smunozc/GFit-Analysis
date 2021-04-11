@@ -27,6 +27,8 @@ h1 {
   border-bottom-left-radius: 0;
   font-size: 0.5rem;
   height: 30px;
+  padding: 10px;
+  text-align: start;
   left: 0;
   position: relative;
   width: 70%;
@@ -34,6 +36,7 @@ h1 {
 
 .totalDataVal{
   font-size: 0.8rem;
+  margin: 0;
 }
 
 .button:hover {
@@ -48,6 +51,8 @@ h1 {
   border-bottom-left-radius: 0;
   font-size: 1rem;
   height: 50px;
+  padding: 10px;
+  text-align: start;
   left: 0;
   position: relative;
   width: 90%;
@@ -55,6 +60,7 @@ h1 {
 
 .totalDataVal-selected{
   font-size: 1.8rem;
+  margin: 0;
 }
 
 .bubble {
