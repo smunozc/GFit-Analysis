@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ILineChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
+import { Component, OnDestroy } from '@angular/core';
+// import { ILineChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
+import { Subscription, timer } from 'rxjs';
+import { DataApiService } from '../services/data-api.service';
+import { DataProcessingService } from '../services/data-processing.service';
 
 export interface Chart {
   type: ChartType;
@@ -10,26 +13,26 @@ export interface Chart {
   events?: ChartEvent;
 }
 
+export function getRandomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 @Component({
   selector: 'app-chart',
-  template: `
-  <x-chartist
-    [type]="chart.type"
-    [data]="chart.data"
-    [options]="chart.options"
-    [events]="chart.events"
-  ></x-chartist>
-  `,
+  templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent {
+export class ChartComponent implements OnDestroy {
 
   public chart: Chart;
   public chartHeight: number;
+  public valuesPerDay: Array<number>;
+  public loaded: boolean = false;
+  private timerSubscription: Subscription;
 
-  constructor() {
+  constructor( private dataApi: DataApiService, private dataProcessing: DataProcessingService) {
     this.updateChartHeight();
-
+    this.valuesPerDay = [0,0,0,0,0,0,0];
     this.chart = {
       data: {
         labels: [
@@ -42,7 +45,7 @@ export class ChartComponent {
           'Sun'
         ],
         series: [
-          [500, 4200, 30, 7000, 2500, 0, 0]
+          this.valuesPerDay
         ]
       },
       type: 'Line',
@@ -52,6 +55,8 @@ export class ChartComponent {
         height: this.chartHeight
       }
     }
+
+    this.timerSubscription = timer(0, 2500).subscribe(() => this.checkValuesPerDay());
   }
 
   updateChartHeight() {
@@ -61,6 +66,41 @@ export class ChartComponent {
     } else {
       this.chartHeight = 250;
     }
+  }
+
+  checkValuesPerDay(){
+
+    this.dataApi.getWeekDailyStepCount().subscribe(data => {
+
+      let dailyStepCount = this.dataProcessing.processStepData(data.bucket);
+      // console.log(dailyStepCount);
+
+      if(dailyStepCount !== null){
+        this.valuesPerDay = [];
+        for (let day in dailyStepCount) {
+          this.valuesPerDay.push(dailyStepCount[day]);
+        }
+
+        // If there are days yet to analize
+        if(this.valuesPerDay.length < 7){
+          let lastingNum = 7 - this.valuesPerDay.length;
+          for(let i = 0; i < lastingNum; i++){
+            this.valuesPerDay.push(0);
+          }
+        }
+
+        this.chart.data.series = [this.valuesPerDay];
+        this.loaded = true;
+
+      } else {
+        console.log('No se han podido cargar los datos');
+      }
+
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.timerSubscription.unsubscribe();
   }
 
 }

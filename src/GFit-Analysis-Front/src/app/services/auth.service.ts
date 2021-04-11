@@ -9,7 +9,7 @@ import { DataApiService } from './data-api.service';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth, private dataApi: DataApiService) { }
+  constructor(private afAuth: AngularFireAuth,  private dataApi: DataApiService) { }
 
   registerUser() { }
 
@@ -22,10 +22,8 @@ export class AuthService {
 
     this.afAuth.signInWithPopup(provider).then(
       (result) => {
-        console.log(result);
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('credential', JSON.stringify(result.credential));
-        this.dataApi.getWeekDailyStepCount();
       },
       (error) => {
         // The provider's account email, can be used in case of
