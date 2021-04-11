@@ -24,10 +24,17 @@ export class DataApiService {
     if (credential != null) {
       const url = 'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate';
 
-      // Obtain last 7 days in miliseconds
-      let todayDateMilis = Date.now();
-      let firstWeekDayMilis = todayDateMilis - 604800000;
+      // Obtain monday of this week at 00:00 of my timezone
+      let monday = this.getMonday(new Date());
+      monday.setHours(0, 0, 0, 0);
 
+      // Obtain sunday of this week at 23:59 of my timezone
+      let sunday = new Date();
+      sunday.setDate(monday.getDate() + 6);
+      sunday.setHours(23,59,59,999);
+      
+      // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of this week
+      // let firstWeekDayMilis = todayDateMilis - 604800000;
 
       // Body of the POST request
       const body: any = {
@@ -36,8 +43,8 @@ export class DataApiService {
           "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
         }],
         "bucketByTime": { "durationMillis": 86400000 },
-        "startTimeMillis": firstWeekDayMilis,
-        "endTimeMillis": todayDateMilis
+        "startTimeMillis": monday.getTime(),
+        "endTimeMillis": sunday.getTime()
       };
 
       // Headers for Authorization
@@ -60,4 +67,13 @@ export class DataApiService {
       console.log('La credencial es nula');
     }
   }
+
+  getMonday(d) {
+    d = new Date(d);
+    let day = d.getDay();
+
+    let diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  }
+
 }

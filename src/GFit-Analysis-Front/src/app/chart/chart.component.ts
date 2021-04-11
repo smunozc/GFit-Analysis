@@ -56,7 +56,8 @@ export class ChartComponent implements OnDestroy {
       }
     }
 
-    this.timerSubscription = timer(0, 2500).subscribe(() => this.checkValuesPerDay());
+    // Every minute data will be updated
+    this.timerSubscription = timer(0, 60000).subscribe(() => this.checkValuesPerDay());
   }
 
   updateChartHeight() {
@@ -73,7 +74,6 @@ export class ChartComponent implements OnDestroy {
     this.dataApi.getWeekDailyStepCount().subscribe(data => {
 
       let dailyStepCount = this.dataProcessing.processStepData(data.bucket);
-      // console.log(dailyStepCount);
 
       if(dailyStepCount !== null){
         this.valuesPerDay = [];
@@ -89,6 +89,7 @@ export class ChartComponent implements OnDestroy {
           }
         }
 
+        console.log(this.valuesPerDay);
         this.chart.data.series = [this.valuesPerDay];
         this.loaded = true;
 

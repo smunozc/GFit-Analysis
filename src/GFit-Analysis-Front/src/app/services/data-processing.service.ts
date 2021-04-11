@@ -18,8 +18,6 @@ export class DataProcessingService {
       let date: Date = new Date();
       date.setTime(day.startTimeMillis);
 
-
-
       // console.log('Fecha completa: ' + date.toUTCString() + '\n' + 'Dia de la semana: ' + date.getDay());
 
       if(date.getDay() === 1){
