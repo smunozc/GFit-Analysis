@@ -32,8 +32,10 @@ export class DataApiService {
       let sunday = new Date();
       sunday.setDate(monday.getDate() + 6);
       sunday.setHours(23,59,59,999);
+
+      // console.log('monday: ' + monday.getTime());
       
-      // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of this week
+      // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of current week
       // let firstWeekDayMilis = todayDateMilis - 604800000;
 
       // Body of the POST request
@@ -68,7 +70,7 @@ export class DataApiService {
     }
   }
 
-  getMonday(d) {
+  getMonday(d: Date): Date {
     d = new Date(d);
     let day = d.getDay();
 

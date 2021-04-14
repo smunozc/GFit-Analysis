@@ -19,6 +19,7 @@ export class DataProcessingService {
       date.setTime(day.startTimeMillis);
 
       // console.log('Fecha completa: ' + date.toUTCString() + '\n' + 'Dia de la semana: ' + date.getDay());
+      console.log(day);
 
       if(date.getDay() === 1){
 

@@ -68,4 +68,8 @@
     top: 0;
     width: 100%;
   }
+
+  .selected{
+    border-left: 5px solid #1e87ff;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 // import { ILineChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 import { Subscription, timer } from 'rxjs';
