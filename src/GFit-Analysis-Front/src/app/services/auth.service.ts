@@ -9,11 +9,15 @@ import { DataApiService } from './data-api.service';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth,  private dataApi: DataApiService) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   registerUser() { }
 
   loginGoogle() {
+    
+    // Use client's device language
+    firebase.auth().useDeviceLanguage();
+
     // Creates the provider object.
     let provider = new firebase.auth.GoogleAuthProvider();
     // Additional scopes for the provider:

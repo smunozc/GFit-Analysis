@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { DataProcessingService } from '../services/data-processing.service';
 
-import { ChartComponent } from '../chart/chart.component'
+import { ChartComponent } from '../chart/chart.component';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,16 +12,23 @@ import { ChartComponent } from '../chart/chart.component'
 })
 export class DashboardComponent implements OnInit {
 
-  totalSteps: number;
+  totalSteps: number = null;
   stepsSelected: boolean = true;
+  selectorButtonsLoaded: boolean = false;
+  private timerSubscription: Subscription;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    let aux = localStorage.getItem('totalStepsWeek')
+    this.timerSubscription = timer(0, 2000).subscribe(() => { 
+      console.log('TIMER SUBSCRIPTION');
 
-    if(aux !== null){
-      this.totalSteps = parseInt(aux);
-    }
+      if(localStorage.getItem('totalStepsWeek') !== null){
+        this.totalSteps = parseInt(localStorage.getItem('totalStepsWeek'));
+        this.selectorButtonsLoaded = true;
+        this.timerSubscription.unsubscribe();
+      }
+
+    });
   }
 
   logout(){
