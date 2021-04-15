@@ -1,7 +1,6 @@
 .wrapper{
-    height: 1000px;
     overflow: hidden;
-    width: 100%;
+    width: 90% 0;
 }
 
 .content-container{
@@ -13,8 +12,13 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-start;
+        margin-left: 5rem;
     }
     .navbar-container{
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
         width: 5rem;
     }
 }
