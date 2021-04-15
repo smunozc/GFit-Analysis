@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { DataProcessingService } from '../services/data-processing.service';
 
-import { ChartComponent } from '../chart/chart.component';
 import { Subscription, timer } from 'rxjs';
 
 @Component({
@@ -16,7 +13,7 @@ export class DashboardComponent implements OnInit {
   stepsSelected: boolean = true;
   selectorButtonsLoaded: boolean = false;
   private timerSubscription: Subscription;
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.timerSubscription = timer(0, 2000).subscribe(() => { 
@@ -29,10 +26,6 @@ export class DashboardComponent implements OnInit {
       }
 
     });
-  }
-
-  logout(){
-    this.authService.logoutUser();
   }
 
   selectButtonSteps(){
