@@ -13,6 +13,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "USER")
 public class User implements Serializable{
@@ -31,14 +33,29 @@ public class User implements Serializable{
 	private String username;
 	
 	@Lob
-	@Column(length=100000)
+	@Column(length=100000, nullable = true)
 	private byte[] profilePicture;
 	
 	@Column(nullable = true)
 	private String role;
 	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Exercise> exercise;
+	
+	/*
+	@ManyToMany
+	@JoinTable(
+		name = "user_reward",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "reward_id")
+	)
+	private List<Reward> rewards;
+	*/
+	//@JsonManagedReference
+	@OneToMany(mappedBy = "user")
+	private List<UserRewards> userRewards;
+	
 	
 	public User() {
 		super();
@@ -82,6 +99,22 @@ public class User implements Serializable{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<Exercise> getExercise() {
+		return exercise;
+	}
+
+	public void setExercise(List<Exercise> exercise) {
+		this.exercise = exercise;
+	}
+
+	public List<UserRewards> getRewards() {
+		return userRewards;
+	}
+
+	public void setRewards(List<UserRewards> rewards) {
+		this.userRewards = rewards;
 	}
 		
 }

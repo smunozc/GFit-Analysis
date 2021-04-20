@@ -27,6 +27,7 @@ export class ChartComponent implements OnDestroy {
   public chart: Chart;
   public chartHeight: number;
   public valuesPerDay: Array<number>;
+  public dataType: string = 'steps';
   public loaded: boolean = false;
   private timerSubscription: Subscription;
 
@@ -71,33 +72,46 @@ export class ChartComponent implements OnDestroy {
 
   checkValuesPerDay(){
 
-    this.dataApi.getWeekDailyStepCount().subscribe(data => {
+    if(this.dataType === 'steps'){
 
-      let dailyStepCount = this.dataProcessing.processStepData(data.bucket);
+      this.dataApi.getWeekDailyStepCount().subscribe(data => {
 
-      if(dailyStepCount !== null){
-        this.valuesPerDay = [];
-        for (let day in dailyStepCount) {
-          this.valuesPerDay.push(dailyStepCount[day]);
-        }
-
-        // If there are days yet to analize
-        if(this.valuesPerDay.length < 7){
-          let lastingNum = 7 - this.valuesPerDay.length;
-          for(let i = 0; i < lastingNum; i++){
-            this.valuesPerDay.push(0);
+        let dailyStepCount = this.dataProcessing.processStepData(data.bucket);
+  
+        if(dailyStepCount !== null){
+          this.valuesPerDay = [];
+          for (let day in dailyStepCount) {
+            this.valuesPerDay.push(dailyStepCount[day]);
           }
+  
+          // If there are days yet to analize
+          if(this.valuesPerDay.length < 7){
+            let lastingNum = 7 - this.valuesPerDay.length;
+            for(let i = 0; i < lastingNum; i++){
+              this.valuesPerDay.push(0);
+            }
+          }
+  
+          console.log(this.valuesPerDay);
+          this.chart.data.series = [this.valuesPerDay];
+          this.loaded = true;
+  
+        } else {
+          console.log('No se han podido cargar los datos');
         }
+  
+      });
 
-        console.log(this.valuesPerDay);
-        this.chart.data.series = [this.valuesPerDay];
-        this.loaded = true;
+    } else {
+      console.log('Other types not implemented yet');
+      this.valuesPerDay = [];
+      this.valuesPerDay.push(1200);
+      this.valuesPerDay.push(1700);
+      this.chart.data.series = [this.valuesPerDay];
+      this.loaded = true;
+    }
 
-      } else {
-        console.log('No se han podido cargar los datos');
-      }
-
-    });
+    
   }
 
   public ngOnDestroy(): void {

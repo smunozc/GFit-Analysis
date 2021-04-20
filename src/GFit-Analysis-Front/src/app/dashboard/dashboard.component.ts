@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Subscription, timer } from 'rxjs';
+import { ChartComponent } from '../chart/chart.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   stepsSelected: boolean = true;
   selectorButtonsLoaded: boolean = false;
   private timerSubscription: Subscription;
-  constructor() { }
+  constructor(private chart: ChartComponent) { }
 
   ngOnInit(): void {
     this.timerSubscription = timer(0, 2000).subscribe(() => { 
@@ -42,6 +43,11 @@ export class DashboardComponent implements OnInit {
 
     totalStepsTag.className = 'totalDataVal-selected';
     totalCaloriesTag.className = 'totalDataVal';
+
+    // chart modification
+
+    this.chart.dataType = 'steps';
+    //this.chart.checkValuesPerDay();
   }
 
   selectButtonCalories(){
@@ -58,6 +64,11 @@ export class DashboardComponent implements OnInit {
 
     totalStepsTag.className = 'totalDataVal';
     totalCaloriesTag.className = 'totalDataVal-selected';
+
+    // chart modification
+
+    this.chart.dataType = 'calories';
+    //this.chart.checkValuesPerDay();
   }
 
 }
