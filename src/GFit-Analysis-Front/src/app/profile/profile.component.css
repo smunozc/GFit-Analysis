@@ -1,0 +1,17 @@
+.contain{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+}
+
+#profile-picture{
+    border-radius: 100%;
+    margin-top: 100px;
+    width: 10rem;
+}
+
+.btn{
+    margin: 20px 0;
+}

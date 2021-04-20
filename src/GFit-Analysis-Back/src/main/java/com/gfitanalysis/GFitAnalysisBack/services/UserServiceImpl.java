@@ -1,5 +1,7 @@
 package com.gfitanalysis.GFitAnalysisBack.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class UserServiceImpl implements UserServiceI {
 	@Override
 	public User save(User user1) {
 		return userRepository.save(user1);
+	}
+
+	@Override
+	public List<User> getAll() {
+		return this.userRepository.findAll();
 	}
 
 }

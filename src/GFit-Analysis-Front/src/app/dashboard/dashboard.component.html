@@ -14,12 +14,14 @@
     </div>
 
     <div *ngIf="stepsSelected; else elseBlock" class="chart">
+        <h2>Steps overview</h2>
         <app-chart></app-chart>
     </div>
 
     <ng-template #elseBlock>
         <div class="chart">
-            <h4>The calories chart is not implemented yet</h4>
+            <h2>The calories chart is not implemented yet</h2>
+            <app-chart></app-chart>
         </div>
     </ng-template>
 </div>

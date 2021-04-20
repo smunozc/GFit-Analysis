@@ -36,7 +36,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
     HttpClientModule,
     ChartistModule
   ],
-  providers: [],
+  providers: [ChartComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
