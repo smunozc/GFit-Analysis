@@ -1,8 +1,13 @@
-.contain{
+.banner{
     align-items: center;
+    background: linear-gradient(to bottom, #012031 0%, #034b75 40%, #fc94ae 95%);
+    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    overflow: hidden;
+    margin: 50px auto;
     width: 90%;
 }
 
@@ -12,6 +17,43 @@
     width: 10rem;
 }
 
+#logout{
+    background-color: rgb(62, 233, 255);
+    border: none;
+    border-radius: 100%;
+    font-size: 1.3rem;
+    height: 4rem;
+    padding-right: 2px;
+    position: absolute;
+    right: 20%;
+    text-align: center;
+    top: 20%;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+    width: 4rem;
+}
+
+#logout:hover{
+    background-color: rgb(51, 188, 206);
+    font-size: 1.6rem;
+    height: 5rem;
+    transition-property: all;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in;
+    text-align: center;
+    width: 5rem;
+}
+
 .btn{
     margin: 20px 0;
+}
+
+.badges {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 300px;
+    margin: 0 auto;
+    width: 90%
+}
+.badges h2{
+    padding: 5px;
 }

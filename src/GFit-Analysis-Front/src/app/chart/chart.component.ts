@@ -59,6 +59,7 @@ export class ChartComponent implements OnDestroy {
 
     // Every minute data will be updated
     this.timerSubscription = timer(0, 60000).subscribe(() => this.checkValuesPerDay());
+    console.log(this.valuesPerDay + '\n' + 'inchart: ' + this.chart.data.series);
   }
 
   updateChartHeight() {
