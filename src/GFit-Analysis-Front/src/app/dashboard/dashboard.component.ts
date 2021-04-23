@@ -17,8 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor(private chart: ChartComponent) { }
 
   ngOnInit(): void {
-    this.timerSubscription = timer(0, 2000).subscribe(() => { 
-      console.log('TIMER SUBSCRIPTION');
+    this.timerSubscription = timer(0, 2000).subscribe(() => {
 
       if(localStorage.getItem('totalStepsWeek') !== null){
         this.totalSteps = parseInt(localStorage.getItem('totalStepsWeek'));

@@ -2,6 +2,7 @@ package com.gfitanalysis.GFitAnalysisBack.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,9 +53,9 @@ public class User implements Serializable{
 	)
 	private List<Reward> rewards;
 	*/
-	//@JsonManagedReference
-	@OneToMany(mappedBy = "user")
-	private List<UserRewards> userRewards;
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private Set<UserRewards> userRewards;
 	
 	
 	public User() {
@@ -109,12 +110,12 @@ public class User implements Serializable{
 		this.exercise = exercise;
 	}
 
-	public List<UserRewards> getRewards() {
+	public Set<UserRewards> getUserRewards() {
 		return userRewards;
 	}
 
-	public void setRewards(List<UserRewards> rewards) {
-		this.userRewards = rewards;
+	public void setUserRewards(Set<UserRewards> userRewards) {
+		this.userRewards = userRewards;
 	}
 		
 }
