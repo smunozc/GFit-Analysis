@@ -1,28 +1,34 @@
 package com.gfitanalysis.GFitAnalysisBack.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class UserRewards {
-	
+@Table(name = "USER_REWARDS")
+public class UserRewards implements Serializable {
+
+	private static final long serialVersionUID = -7191199132267720250L;
+
 	@EmbeddedId
 	private UserRewardsKey id;
 	
-	//@JsonBackReference
+	@JsonBackReference
 	@ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
 	private User user;
 	
-	//@JsonManagedReference
+	@JsonManagedReference
 	@ManyToOne
     @MapsId("rewardId")
     @JoinColumn(name = "reward_id")

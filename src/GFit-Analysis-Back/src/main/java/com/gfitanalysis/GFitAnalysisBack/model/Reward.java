@@ -1,7 +1,7 @@
 package com.gfitanalysis.GFitAnalysisBack.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Reward implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reward_id")
-	private int idReward;
+	private int id;
 	
 	@Column(nullable = false)
 	private String name;
@@ -40,20 +40,20 @@ public class Reward implements Serializable{
 	private List<User> users;
 	*/
 	
-	//@JsonBackReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "reward")
-	private List<UserRewards> userRewards;
+	private Set<UserRewards> userRewards;
 
 	public Reward() {
 		super();
 	}
 
 	public int getIdReward() {
-		return idReward;
+		return id;
 	}
 
 	public void setIdReward(int idReward) {
-		this.idReward = idReward;
+		this.id = idReward;
 	}
 
 	public String getName() {
@@ -80,11 +80,11 @@ public class Reward implements Serializable{
 		this.badgeImg = badgeImg;
 	}
 
-	public List<UserRewards> getUserRewards() {
+	public Set<UserRewards> getUserRewards() {
 		return userRewards;
 	}
 
-	public void setUserRewards(List<UserRewards> userRewards) {
+	public void setUserRewards(Set<UserRewards> userRewards) {
 		this.userRewards = userRewards;
 	}
 
