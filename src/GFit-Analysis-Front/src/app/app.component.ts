@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   title = 'GFit-Analysis-Front';
   isLogged: boolean = false;
@@ -25,11 +24,11 @@ export class AppComponent implements OnInit {
       if (auth) {
         console.log("user logged in");
         this.isLogged = true;
-        this.router.navigate(['dashboard']);
+        // this.router.navigate(['dashboard']);
       } else {
         console.log("user not logged");
-        this.router.navigate(['login']);
         this.isLogged = false;
+        // this.router.navigate(['login']);
       }
       this.isChecked = true;
     });
