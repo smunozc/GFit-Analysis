@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/app';
-import { DataApiService } from './data-api.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
   registerUser() { }
 
@@ -28,6 +28,7 @@ export class AuthService {
       (result) => {
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('credential', JSON.stringify(result.credential));
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         // The provider's account email, can be used in case of
@@ -51,7 +52,8 @@ export class AuthService {
 
   logoutUser() {
     localStorage.clear();
-    return this.afAuth.signOut();
+    this.afAuth.signOut();
+    this.router.navigate(['/login']);
   }
 
   isAuth() {
