@@ -33,14 +33,13 @@ public class User implements Serializable{
 	@Column(nullable = false, unique = true)
 	private String username;
 	
-	@Lob
-	@Column(length=100000, nullable = true)
-	private byte[] profilePicture;
+	@Column(nullable = true)
+	private String profilePicture;
 	
 	@Column(nullable = true)
 	private String role;
 	
-	@JsonManagedReference
+	// @JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Exercise> exercise;
 	
@@ -53,7 +52,7 @@ public class User implements Serializable{
 	)
 	private List<Reward> rewards;
 	*/
-	@JsonManagedReference
+	// @JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<UserRewards> userRewards;
 	
@@ -86,11 +85,11 @@ public class User implements Serializable{
 		this.username = username;
 	}
 
-	public byte[] getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 
-	public void setProfilePicture(byte[] profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 

@@ -3,18 +3,42 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router, private http: HttpClient) { }
 
-  registerUser() { }
+  loginUser(user: any) {
+
+    const url = 'http://localhost:8080/user/login';
+
+    // Request body (user)
+
+    let body: any = {
+      "email": user.email,
+      "username": user.displayName,
+      "profilePicture": user.photoURL,
+      "role": "user",
+      "exercise": null,
+      "userRewards": null
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+
+  }
 
   loginGoogle() {
-    
+
     // Use client's device language
     firebase.auth().useDeviceLanguage();
 
@@ -26,7 +50,13 @@ export class AuthService {
 
     this.afAuth.signInWithPopup(provider).then(
       (result) => {
-        localStorage.setItem('user', JSON.stringify(result.user));
+        this.loginUser(result.user).subscribe(user => {
+
+          localStorage.setItem('user', JSON.stringify(user));
+            
+        });
+
+        localStorage.setItem('googleUser', JSON.stringify(result.user));
         localStorage.setItem('credential', JSON.stringify(result.credential));
         this.router.navigate(['/dashboard']);
       },

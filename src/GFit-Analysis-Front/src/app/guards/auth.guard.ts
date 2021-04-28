@@ -10,8 +10,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router){ }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(localStorage.getItem('user') !== null){
-      console.log('User logged in');
+    if(localStorage.getItem('googleUser') !== null){
       return true;
     } else {
       this.router.navigate(['/login']);

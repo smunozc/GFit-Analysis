@@ -2,8 +2,8 @@
     <h1>DASHBOARD</h1>
 
     <div id="buttons-container" *ngIf="selectorButtonsLoaded">
-        <button (click)="selectButtonSteps()" id="button-steps" class="button-selected"><h2 id="totalSteps" class="totalDataVal-selected">{{totalSteps}}</h2>TOTAL STEPS</button>
-        <button (click)="selectButtonCalories()" id="button-calories" class="button"><h2 id="totalCalories" class="totalDataVal"></h2>TOTAL CALORIES</button>
+        <button (click)="selectButtonSteps()" id="button-steps" class="button-selected"><h2 *ngIf="stepsSelected" id="totalSteps" class="totalDataVal-selected">{{totalSteps}}</h2>TOTAL STEPS</button>
+        <button (click)="selectButtonCalories()" id="button-calories" class="button"><h2 *ngIf="!stepsSelected" id="totalCalories" class="totalDataVal-selected">{{totalCalories}}</h2>TOTAL CALORIES</button>
     </div>
 
     <div class="bubble">
@@ -15,13 +15,13 @@
 
     <div *ngIf="stepsSelected; else elseBlock" class="chart">
         <h2>Steps overview</h2>
-        <app-chart></app-chart>
+        <app-chart [dataType]="dataType"></app-chart>
     </div>
 
     <ng-template #elseBlock>
         <div class="chart">
-            <h2>The calories chart is not implemented yet</h2>
-            <app-chart></app-chart>
+            <h2>Calories overview</h2>
+            <app-chart [dataType]="dataType"></app-chart>
         </div>
     </ng-template>
 </div>

@@ -28,7 +28,7 @@ public class UserRewards implements Serializable {
     @JoinColumn(name = "user_id")
 	private User user;
 	
-	@JsonManagedReference
+	// @JsonManagedReference
 	@ManyToOne
     @MapsId("rewardId")
     @JoinColumn(name = "reward_id")
