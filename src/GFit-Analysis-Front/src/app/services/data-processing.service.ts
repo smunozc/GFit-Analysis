@@ -7,11 +7,12 @@ export class DataProcessingService {
 
   constructor() { }
 
-  processStepData(dataBucket: any): any{
+  processData(dataBucket: any, dataType: string): any{
 
     let processedData = {};
     let monday: Date = null;
     let totalStepsWeek: number = 0;
+    let totalCaloriesWeek: number = 0;
 
     for (let day of dataBucket){
 
@@ -26,8 +27,14 @@ export class DataProcessingService {
         monday = date;
 
         if(day.dataset[0].point.length > 0){
-          processedData['monday'] = day.dataset[0].point[0].value[0].intVal;
-          totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+          
+          if(dataType === 'steps'){
+            processedData['monday'] = day.dataset[0].point[0].value[0].intVal;
+            totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+          } else if(dataType === 'calories') {
+            processedData['monday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+            totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+          }
 
         } else {
           processedData['monday'] = 0;
@@ -42,8 +49,15 @@ export class DataProcessingService {
             case 2: 
 
               if(day.dataset[0].point.length > 0){
-                processedData['tuesday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['tuesday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['tuesday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+
               } else {
                 processedData['tuesday'] = 0;
               }
@@ -52,8 +66,15 @@ export class DataProcessingService {
             case 3:
 
               if(day.dataset[0].point.length > 0){
-                processedData['wednesday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['wednesday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['wednesday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+                
               } else {
                 processedData['wednesday'] = 0;
               }
@@ -62,8 +83,15 @@ export class DataProcessingService {
             case 4: 
 
               if(day.dataset[0].point.length > 0){
-                processedData['thursday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['thursday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['thursday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+
               } else {
                 processedData['thursday'] = 0;
               }
@@ -72,8 +100,15 @@ export class DataProcessingService {
             case 5: 
               
               if(day.dataset[0].point.length > 0){
-                processedData['friday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['friday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['friday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+
               } else {
                 processedData['friday'] = 0;
               }
@@ -82,8 +117,15 @@ export class DataProcessingService {
             case 6:
 
               if(day.dataset[0].point.length > 0){
-                processedData['saturday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['saturday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['saturday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+
               } else {
                 processedData['saturday'] = 0;
               }
@@ -92,8 +134,15 @@ export class DataProcessingService {
             case 0:
 
               if(day.dataset[0].point.length > 0){
-                processedData['sunday'] = day.dataset[0].point[0].value[0].intVal;
-                totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                
+                if(dataType === 'steps'){
+                  processedData['sunday'] = day.dataset[0].point[0].value[0].intVal;
+                  totalStepsWeek += day.dataset[0].point[0].value[0].intVal;
+                } else if(dataType === 'calories') {
+                  processedData['sunday'] = Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                  totalCaloriesWeek += Math.trunc(day.dataset[0].point[0].value[0].fpVal);
+                }
+
               } else {
                 processedData['sunday'] = 0;
               }
@@ -103,7 +152,13 @@ export class DataProcessingService {
         }
       }
     }
+
+    console.log("total, calories|steps: "  + totalCaloriesWeek + " | " + totalStepsWeek + '\n' +
+                "arrayData: " + processedData);
+
     localStorage.setItem('totalStepsWeek', totalStepsWeek.toString());
+    localStorage.setItem('totalCaloriesWeek', totalCaloriesWeek.toString());
+    
     return processedData;
   }
 }

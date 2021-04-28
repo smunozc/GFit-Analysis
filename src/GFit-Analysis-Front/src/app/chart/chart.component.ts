@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 // import { ILineChartOptions, IChartistAnimationOptions, IChartistData } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 import { Subscription, timer } from 'rxjs';
@@ -22,18 +22,18 @@ export function getRandomInt(min: number, max: number): number {
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnDestroy {
+export class ChartComponent implements OnDestroy, OnChanges {
 
   public chart: Chart;
   public chartHeight: number;
   public valuesPerDay: Array<number>;
-  public dataType: string = 'steps';
   public loaded: boolean = false;
   private timerSubscription: Subscription;
+  @Input() dataType: string;
 
-  constructor( private dataApi: DataApiService, private dataProcessing: DataProcessingService) {
+  constructor(private dataApi: DataApiService, private dataProcessing: DataProcessingService) {
     this.updateChartHeight();
-    this.valuesPerDay = [0,0,0,0,0,0,0];
+    this.valuesPerDay = [0, 0, 0, 0, 0, 0, 0];
     this.chart = {
       data: {
         labels: [
@@ -59,7 +59,11 @@ export class ChartComponent implements OnDestroy {
 
     // Every minute data will be updated
     this.timerSubscription = timer(0, 60000).subscribe(() => this.checkValuesPerDay());
-    console.log(this.valuesPerDay + '\n' + 'inchart: ' + this.chart.data.series);
+    // console.log(this.valuesPerDay + '\n' + 'inchart: ' + this.chart.data.series);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.checkValuesPerDay();
   }
 
   updateChartHeight() {
@@ -71,48 +75,69 @@ export class ChartComponent implements OnDestroy {
     }
   }
 
-  checkValuesPerDay(){
+  checkValuesPerDay() {
 
-    if(this.dataType === 'steps'){
+    this.dataApi.getWeekDailyCaloriesCount().subscribe(data => {
 
-      this.dataApi.getWeekDailyStepCount().subscribe(data => {
+      let dailyCaloriesCount = this.dataProcessing.processData(data.bucket, this.dataType);
 
-        let dailyStepCount = this.dataProcessing.processStepData(data.bucket);
-  
-        if(dailyStepCount !== null){
+      if (this.dataType === 'calories') {
+
+        if (dailyCaloriesCount !== null) {
+          this.valuesPerDay = [];
+          for (let day in dailyCaloriesCount) {
+            this.valuesPerDay.push(dailyCaloriesCount[day]);
+          }
+
+          // If there are days yet to analize
+          if (this.valuesPerDay.length < 7) {
+            let lastingNum = 7 - this.valuesPerDay.length;
+            for (let i = 0; i < lastingNum; i++) {
+              this.valuesPerDay.push(0);
+            }
+          }
+          this.chart.data.series = [this.valuesPerDay];
+          this.loaded = true;
+
+        } else {
+          console.log('Could not load the data');
+        }
+
+      }
+
+    });
+
+    this.dataApi.getWeekDailyStepCount().subscribe(data => {
+      
+      let dailyStepCount = this.dataProcessing.processData(data.bucket, this.dataType);
+      
+      if (this.dataType === 'steps') {
+
+        if (dailyStepCount !== null) {
           this.valuesPerDay = [];
           for (let day in dailyStepCount) {
             this.valuesPerDay.push(dailyStepCount[day]);
           }
-  
+
           // If there are days yet to analize
-          if(this.valuesPerDay.length < 7){
+          if (this.valuesPerDay.length < 7) {
             let lastingNum = 7 - this.valuesPerDay.length;
-            for(let i = 0; i < lastingNum; i++){
+            for (let i = 0; i < lastingNum; i++) {
               this.valuesPerDay.push(0);
             }
           }
-  
-          console.log(this.valuesPerDay);
+
           this.chart.data.series = [this.valuesPerDay];
           this.loaded = true;
-  
+
         } else {
-          console.log('No se han podido cargar los datos');
+          console.log('Could not load the data');
         }
-  
-      });
 
-    } else {
-      console.log('Other types not implemented yet');
-      this.valuesPerDay = [];
-      this.valuesPerDay.push(1200);
-      this.valuesPerDay.push(1700);
-      this.chart.data.series = [this.valuesPerDay];
-      this.loaded = true;
-    }
+      }
 
-    
+    });
+
   }
 
   public ngOnDestroy(): void {

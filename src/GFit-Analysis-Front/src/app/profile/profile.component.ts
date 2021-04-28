@@ -9,9 +9,22 @@ import { AuthService } from '../services/auth.service';
 })
 export class ProfileComponent implements OnInit {
 
+  user:any;
+  hasBackend: boolean;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    /* Temporal user, final version will take this parameters from the backend and will be able to modify them*/
+    if(localStorage.getItem('user') !== null){
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.hasBackend = true;
+    } else {
+      this.user = JSON.parse(localStorage.getItem('googleUser'));
+      this.hasBackend = false;
+    }
+
   }
 
   logout(){
