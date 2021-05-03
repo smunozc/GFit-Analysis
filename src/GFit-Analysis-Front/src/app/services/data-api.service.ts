@@ -25,8 +25,8 @@ export class DataApiService {
       monday.setHours(0, 0, 0, 0);
 
       // Obtain sunday of this week at 23:59 of my timezone
-      let sunday = new Date();
-      sunday.setDate(monday.getDate() + 6);
+      let sunday = new Date(monday);
+      sunday.setDate(sunday.getDate() + 6);
       sunday.setHours(23,59,59,999);
       
       // This variables obtain the last 7 days
@@ -75,8 +75,8 @@ export class DataApiService {
       monday.setHours(0, 0, 0, 0);
 
       // Obtain sunday of this week at 23:59 of my timezone
-      let sunday = new Date();
-      sunday.setDate(monday.getDate() + 6);
+      let sunday = new Date(monday);
+      sunday.setDate(sunday.getDate() + 6);
       sunday.setHours(23,59,59,999);
 
       // Body of the POST request
