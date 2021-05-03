@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -87,6 +87,18 @@ export class AuthService {
   }
 
   isAuth() {
+    /*
+    return from(this.afAuth.currentUser).pipe(switchMap(user => {
+      if(user !== null){
+        return from(user.getIdTokenResult(true)).pipe(map(token => {
+          return token;
+        }));
+      } else {
+        this.logoutUser();
+      }
+    }));
+    */
+
     return this.afAuth.authState.pipe(map(auth => auth));
   }
 }

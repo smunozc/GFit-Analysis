@@ -1,6 +1,6 @@
 .banner{
     align-items: center;
-    background: linear-gradient(to bottom, #012031 0%, #034b75 40%, #fc94ae 95%);
+    background: linear-gradient(to bottom right, #2D1D7A 16%, #573170 32%, #804565 48%, #AA585B 64%, #D36C50 80%, #FD8046 96%);
     border-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -25,26 +25,26 @@
     background-color: rgb(62, 233, 255);
     border: none;
     border-radius: 100%;
-    font-size: 1.3rem;
-    height: 4rem;
+    font-size: 1.2rem;
+    height: 3rem;
     padding-right: 2px;
     position: absolute;
-    right: 20%;
+    right: 10%;
     text-align: center;
-    top: 20%;
+    top: 10%;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
-    width: 4rem;
+    width: 3rem;
 }
 
 #logout:hover{
     background-color: rgb(51, 188, 206);
-    font-size: 1.6rem;
-    height: 5rem;
+    font-size: 1.5rem;
+    height: 4rem;
     transition-property: all;
     transition-duration: 0.15s;
     transition-timing-function: ease-in;
     text-align: center;
-    width: 5rem;
+    width: 4rem;
 }
 
 .btn{

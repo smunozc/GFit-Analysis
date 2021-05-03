@@ -13,15 +13,43 @@
         </select>
     </div>
 
-    <div *ngIf="stepsSelected; else elseBlock" class="chart">
-        <h2>Steps overview</h2>
-        <app-chart [dataType]="dataType"></app-chart>
-    </div>
+    <div *ngIf="isWeekly; else isDaily">
 
-    <ng-template #elseBlock>
-        <div class="chart">
-            <h2>Calories overview</h2>
+        <div *ngIf="stepsSelected; else elseBlock" class="chart">
+            <h2>Steps overview</h2>
             <app-chart [dataType]="dataType"></app-chart>
         </div>
+    
+        <ng-template #elseBlock>
+            <div class="chart">
+                <h2>Calories overview</h2>
+                <app-chart [dataType]="dataType"></app-chart>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <ng-template #isDaily>
+
+        <div *ngIf="stepsSelected; else elseBlock" class="chart">
+            <h2>Steps overview</h2>
+            
+        </div>
+    
+        <ng-template #elseBlock>
+            <div class="chart">
+                <h2>Calories overview</h2>
+                <div class="card" *ngFor="let day of eachDayValues; index as i">
+                    <div class="card-body">
+                        <h5 class="card-title">{{daysOfWeek[i]}}</h5>
+                        <p class="card-text">{{day[daysOfWeek[i]]}}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                </div>
+            </div>
+        </ng-template>
+
     </ng-template>
+
+    
 </div>
