@@ -20,11 +20,14 @@ public class Exercise implements Serializable{
 
 	private static final long serialVersionUID = 4178561054882074019L;
 	
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "exercise_id")
 	private int exerciseId;
+	*/
 	
+	@Id
 	@Column(nullable = false)
 	private String date;
 	
@@ -36,7 +39,7 @@ public class Exercise implements Serializable{
 	
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_user", nullable = false, updatable = false)
+	@JoinColumn(name = "fk_user")
 	private User user;
 
 	public Exercise() {
@@ -59,6 +62,7 @@ public class Exercise implements Serializable{
 		this.estimatedSteps = estimatedSteps;
 	}
 
+	/*
 	public int getExerciseId() {
 		return exerciseId;
 	}
@@ -66,6 +70,7 @@ public class Exercise implements Serializable{
 	public void setExerciseId(int exerciseId) {
 		this.exerciseId = exerciseId;
 	}
+	*/
 
 	public String getDate() {
 		return date;

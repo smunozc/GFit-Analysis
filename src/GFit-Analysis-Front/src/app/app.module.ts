@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { ChartComponent } from './chart/chart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
     Page404Component,
     ChartComponent,
     ProfileComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    AdminComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.fireBaseConfig),

@@ -41,17 +41,17 @@ public class GFitAnalysisBackApplication implements CommandLineRunner {
 		// User
 		
 		User user1 = new User();
-		user1.setUsername("manolo");
+		user1.setDisplayName("manolo");
 		user1.setEmail("manolo@gmail.com");
-		user1.setRole("admin");
-		user1.setProfilePicture(null);
+		user1.setRole("user");
+		user1.setPhotoURL(null);
 		
 		// Exercises
 		
 		Exercise exercise1 = new Exercise();
 		exercise1.setCaloriesBurned(1200);
 		exercise1.setEstimatedSteps(4000);
-		exercise1.setDate("18/04/2021");
+		exercise1.setDate("2021/04/18");
 		exercise1.setUser(user1);
 		
 //		exerciseService.save(exercise1);

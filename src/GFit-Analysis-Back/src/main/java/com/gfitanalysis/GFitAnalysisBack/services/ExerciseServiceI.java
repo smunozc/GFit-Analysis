@@ -8,7 +8,13 @@ import com.gfitanalysis.GFitAnalysisBack.model.User;
 public interface ExerciseServiceI {
 	
 	public List<Exercise> getByUser(User user);
+	
+	public Exercise getByDateAndUser(String date, User user);
+	
+	public List<Exercise> getAll();
 
 	public Exercise save(Exercise exercise);
+	
+	// public Exercise update(Exercise exercise);
 
 }
