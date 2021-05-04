@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private http: HttpClient) { }
 
-  loginUser(user: any) {
+  loginUser(user: any): any {
 
     const url = 'http://localhost:8080/user/login';
 
@@ -20,8 +20,8 @@ export class AuthService {
 
     let body: any = {
       "email": user.email,
-      "username": user.displayName,
-      "profilePicture": user.photoURL,
+      "displayName": user.displayName,
+      "photoURL": user.photoURL,
       "role": "user",
       "exercise": null,
       "userRewards": null
@@ -52,8 +52,9 @@ export class AuthService {
       (result) => {
         this.loginUser(result.user).subscribe(user => {
 
+          console.log(user);
           localStorage.setItem('user', JSON.stringify(user));
-            
+
         });
 
         localStorage.setItem('googleUser', JSON.stringify(result.user));

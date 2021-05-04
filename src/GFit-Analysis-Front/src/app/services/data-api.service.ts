@@ -27,8 +27,8 @@ export class DataApiService {
       // Obtain sunday of this week at 23:59 of my timezone
       let sunday = new Date(monday);
       sunday.setDate(sunday.getDate() + 6);
-      sunday.setHours(23,59,59,999);
-      
+      sunday.setHours(23, 59, 59, 999);
+
       // This variables obtain the last 7 days
       // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of current week
       // let firstWeekDayMilis = todayDateMilis - 604800000;
@@ -77,7 +77,7 @@ export class DataApiService {
       // Obtain sunday of this week at 23:59 of my timezone
       let sunday = new Date(monday);
       sunday.setDate(sunday.getDate() + 6);
-      sunday.setHours(23,59,59,999);
+      sunday.setHours(23, 59, 59, 999);
 
       // Body of the POST request
       const body: any = {
@@ -107,8 +107,31 @@ export class DataApiService {
     d = new Date(d);
     let day = d.getDay();
 
-    let diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    let diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
     return new Date(d.setDate(diff));
+  }
+
+  postUserData(exercise: Array<any>, user: any): any {
+    const url = 'http://localhost:8080/user/save';
+
+    // Request body
+
+    let body: any = {
+      "email": user.email,
+      "displayName": user.displayName,
+      "photoURL": user.photoURL,
+      "role": user.role,
+      "exercise": exercise,
+      "userRewards": null
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
   }
 
 }

@@ -19,10 +19,27 @@ public class ExerciseServiceImpl implements ExerciseServiceI {
 	public List<Exercise> getByUser(User user) {
 		return this.exerciseRepository.findByUser(user);
 	}
+	
+	@Override
+	public Exercise getByDateAndUser(String date, User user) {
+		return this.exerciseRepository.findByDateAndUser(date, user);
+	}
+	
+	@Override
+	public List<Exercise> getAll() {
+		return this.exerciseRepository.findAll();
+	}
 
 	@Override
 	public Exercise save(Exercise exercise) {
 		return this.exerciseRepository.save(exercise);
 	}
+
+	/*
+	@Override
+	public Exercise update(Exercise exercise) {
+		return this.exerciseRepository;
+	}
+	*/
 
 }

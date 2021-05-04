@@ -27,6 +27,33 @@ public class UserController {
 		User user = userService.getByEmail(userLogin.getEmail());
 
 		if (user != null) {
+			if(userLogin.getExercise() != null) {
+				user.getExercise().addAll(userLogin.getExercise());				
+			}
+			userService.save(user);
+			return user;
+		} else {
+			userService.save(userLogin);
+			User newUser = userService.getByEmail(userLogin.getEmail());
+			return newUser;
+		}
+	}
+	
+	/**
+	 * This method basically does exactly the same as loginUser (saves the user) but has a different name. May be changed in the future.
+	 * @param userLogin user data sent by the front-end.
+	 * @return the user after going through the database.
+	 */
+	@PostMapping("/save")
+	public User saveUserWithData(@RequestBody User userLogin) {
+
+		User user = userService.getByEmail(userLogin.getEmail());
+
+		if (user != null) {
+			if(userLogin.getExercise() != null) {
+				user.getExercise().addAll(userLogin.getExercise());		
+			}
+			userService.save(user);
 			return user;
 		} else {
 			userService.save(userLogin);

@@ -10,11 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "USER")
@@ -31,10 +28,10 @@ public class User implements Serializable{
 	private String email;
 	
 	@Column(nullable = false, unique = true)
-	private String username;
+	private String displayName;
 	
 	@Column(nullable = true)
-	private String profilePicture;
+	private String photoURL;
 	
 	@Column(nullable = true)
 	private String role;
@@ -77,20 +74,20 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getDisplayName() {
+		return displayName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setDisplayName(String username) {
+		this.displayName = username;
 	}
 
-	public String getProfilePicture() {
-		return profilePicture;
+	public String getPhotoURL() {
+		return photoURL;
 	}
 
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
 	}
 
 	public String getRole() {

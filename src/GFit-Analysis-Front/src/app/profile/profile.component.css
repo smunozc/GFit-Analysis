@@ -13,18 +13,20 @@
 
 #profile-picture{
     border-radius: 100%;
-    margin-top: 100px;
+    margin-top: 60px;
     width: 8rem;
 }
 
 #username{
     color: white;
+    margin-bottom: 60px;
 }
 
 #logout{
     background-color: rgb(62, 233, 255);
     border: none;
     border-radius: 100%;
+    color: black;
     font-size: 1.2rem;
     height: 3rem;
     padding-right: 2px;
