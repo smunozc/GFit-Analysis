@@ -25,11 +25,10 @@ export class AppComponent implements OnInit {
       if (auth) {
         console.log("user logged in");
         this.isLogged = true;
-        // this.router.navigate(['dashboard']);
       } else {
         console.log("user not logged");
         this.isLogged = false;
-        this.router.navigate(['login']);
+        // this.router.navigate(['login']);
       }
       this.isChecked = true;
     });

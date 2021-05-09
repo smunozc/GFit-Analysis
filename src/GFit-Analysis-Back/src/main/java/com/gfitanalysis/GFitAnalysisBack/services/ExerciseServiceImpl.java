@@ -35,11 +35,4 @@ public class ExerciseServiceImpl implements ExerciseServiceI {
 		return this.exerciseRepository.save(exercise);
 	}
 
-	/*
-	@Override
-	public Exercise update(Exercise exercise) {
-		return this.exerciseRepository;
-	}
-	*/
-
 }

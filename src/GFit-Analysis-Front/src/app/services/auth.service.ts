@@ -12,12 +12,13 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private http: HttpClient) { }
 
-  loginUser(user: any): any {
+  loginUser(userString: string): any {
+
+    let user = JSON.parse(userString);
 
     const url = 'http://localhost:8080/user/login';
 
     // Request body (user)
-
     let body: any = {
       "email": user.email,
       "displayName": user.displayName,
@@ -26,6 +27,8 @@ export class AuthService {
       "exercise": null,
       "userRewards": null
     }
+
+    // console.log("BODY: " + '\n' + JSON.stringify(body));
 
     // Headers
     let headers = new HttpHeaders();
@@ -50,8 +53,7 @@ export class AuthService {
 
     this.afAuth.signInWithPopup(provider).then(
       (result) => {
-        this.loginUser(result.user).subscribe(user => {
-
+        this.loginUser(JSON.stringify(result.user)).subscribe(user => {
           console.log(user);
           localStorage.setItem('user', JSON.stringify(user));
 

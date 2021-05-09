@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "USER")
@@ -27,7 +29,7 @@ public class User implements Serializable{
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String displayName;
 	
 	@Column(nullable = true)
@@ -37,7 +39,8 @@ public class User implements Serializable{
 	private String role;
 	
 	// @JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(mappedBy = "user")
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE}) 
 	private List<Exercise> exercise;
 	
 	/*
@@ -50,7 +53,8 @@ public class User implements Serializable{
 	private List<Reward> rewards;
 	*/
 	// @JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(mappedBy = "user")
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
 	private Set<UserRewards> userRewards;
 	
 	

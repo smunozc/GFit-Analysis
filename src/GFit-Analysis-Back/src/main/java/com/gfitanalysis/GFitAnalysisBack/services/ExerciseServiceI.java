@@ -14,7 +14,5 @@ public interface ExerciseServiceI {
 	public List<Exercise> getAll();
 
 	public Exercise save(Exercise exercise);
-	
-	// public Exercise update(Exercise exercise);
 
 }
