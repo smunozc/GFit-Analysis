@@ -9,7 +9,7 @@ import com.gfitanalysis.GFitAnalysisBack.model.Exercise;
 import com.gfitanalysis.GFitAnalysisBack.model.User;
 
 @Repository
-public interface ExerciseRepositoryI extends JpaRepository<Exercise, Long> {
+public interface ExerciseRepositoryI extends JpaRepository<Exercise, String> {
 
 	/**
 	 * Finds a list of exercises by the user that did them
@@ -25,7 +25,5 @@ public interface ExerciseRepositoryI extends JpaRepository<Exercise, Long> {
 	 * @return an Exercise object
 	 */
 	public Exercise findByDateAndUser(String date, User user);
-	
-	// public Exercise update
 
 }

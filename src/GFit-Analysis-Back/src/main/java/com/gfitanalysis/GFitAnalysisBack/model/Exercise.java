@@ -2,11 +2,10 @@ package com.gfitanalysis.GFitAnalysisBack.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,13 +19,6 @@ public class Exercise implements Serializable{
 
 	private static final long serialVersionUID = 4178561054882074019L;
 	
-	/*
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "exercise_id")
-	private int exerciseId;
-	*/
-	
 	@Id
 	@Column(nullable = false)
 	private String date;
@@ -38,7 +30,7 @@ public class Exercise implements Serializable{
 	private int estimatedSteps;
 	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_user")
 	private User user;
 
@@ -61,16 +53,6 @@ public class Exercise implements Serializable{
 	public void setEstimatedSteps(int estimatedSteps) {
 		this.estimatedSteps = estimatedSteps;
 	}
-
-	/*
-	public int getExerciseId() {
-		return exerciseId;
-	}
-
-	public void setExerciseId(int exerciseId) {
-		this.exerciseId = exerciseId;
-	}
-	*/
 
 	public String getDate() {
 		return date;

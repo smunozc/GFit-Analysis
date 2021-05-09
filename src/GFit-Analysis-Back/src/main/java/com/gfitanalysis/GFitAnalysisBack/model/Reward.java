@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,9 +30,8 @@ public class Reward implements Serializable{
 	@Column(nullable = false)
 	private String type;
 	
-	@Lob
-	@Column(length=100000, nullable = true)
-	private byte[] badgeImg;
+	@Column(nullable = true)
+	private String badgeImg;
 	
 	/*
 	@ManyToMany(mappedBy = "rewards")
@@ -72,11 +70,11 @@ public class Reward implements Serializable{
 		this.type = type;
 	}
 
-	public byte[] getBadgeImg() {
+	public String getBadgeImg() {
 		return badgeImg;
 	}
 
-	public void setBadgeImg(byte[] badgeImg) {
+	public void setBadgeImg(String badgeImg) {
 		this.badgeImg = badgeImg;
 	}
 

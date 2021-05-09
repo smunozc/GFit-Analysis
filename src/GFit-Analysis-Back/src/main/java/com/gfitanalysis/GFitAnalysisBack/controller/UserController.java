@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gfitanalysis.GFitAnalysisBack.model.Exercise;
 import com.gfitanalysis.GFitAnalysisBack.model.User;
+import com.gfitanalysis.GFitAnalysisBack.services.ExerciseServiceI;
 import com.gfitanalysis.GFitAnalysisBack.services.UserServiceI;
 
 @RestController
@@ -21,26 +23,42 @@ public class UserController {
 	@Autowired
 	private UserServiceI userService;
 	
+	@Autowired
+	private ExerciseServiceI exerciseService;
+	
+	
+	/**
+	 * This method allows the front end to send login information from the user.
+	 * @param userLogin is the user sent from the front end.
+	 * @return returns the user to the front once it has been through the database.
+	 */
 	@PostMapping("/login")
 	public User loginUser(@RequestBody User userLogin) {
 
 		User user = userService.getByEmail(userLogin.getEmail());
 
 		if (user != null) {
-			if(userLogin.getExercise() != null) {
-				user.getExercise().addAll(userLogin.getExercise());				
+			if(userLogin.getDisplayName() != null) {
+				user.setDisplayName(userLogin.getDisplayName());
+			}
+			if(userLogin.getPhotoURL() != null) {
+				user.setPhotoURL(userLogin.getPhotoURL());
 			}
 			userService.save(user);
-			return user;
+			return userService.getByEmail(user.getEmail());
 		} else {
+
+			if(userLogin.getEmail().equals("salvador.munoz.cordero@gmail.com")) {
+				userLogin.setRole("admin");
+			}
+			
 			userService.save(userLogin);
-			User newUser = userService.getByEmail(userLogin.getEmail());
-			return newUser;
+			return userService.getByEmail(userLogin.getEmail());
 		}
 	}
 	
 	/**
-	 * This method basically does exactly the same as loginUser (saves the user) but has a different name. May be changed in the future.
+	 * This method saves exercise data of the user, it is bucketed by days.
 	 * @param userLogin user data sent by the front-end.
 	 * @return the user after going through the database.
 	 */
@@ -51,25 +69,27 @@ public class UserController {
 
 		if (user != null) {
 			if(userLogin.getExercise() != null) {
-				user.getExercise().addAll(userLogin.getExercise());		
+				user.getExercise().addAll(userLogin.getExercise());
+				
+				for (Exercise exercise : userLogin.getExercise()) {
+					this.exerciseService.save(exercise);
+				}
+				
 			}
 			userService.save(user);
 			return user;
 		} else {
+			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK
+			System.out.println("It entered in this else block...");
 			userService.save(userLogin);
-			User newUser = userService.getByEmail(userLogin.getEmail());
-			return newUser;
+			return userService.getByEmail(userLogin.getEmail());
 		}
 	}
 	
-	/*
-	@GetMapping("/getAll")
-	public ResponseEntity<?> getAllUsers(){
-		List<User> response = this.userService.getAll();
-        return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-	*/
-	
+	/**
+	 * This method returns all the users in the database.
+	 * @return a list of users.
+	 */
 	@GetMapping(value = "/getAllUsers")
 	public List<User> getAllUsers(){
 		return this.userService.getAll();
