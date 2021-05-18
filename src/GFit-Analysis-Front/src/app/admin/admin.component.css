@@ -1,0 +1,39 @@
+.contain {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+h1 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+h2 {
+  margin: 10px;
+}
+
+table {
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 5px;
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+  width: 90%;
+}
+
+tr {
+  border: none;
+  border-bottom: 1px solid rgb(59, 59, 59);
+}
+
+@media screen and (min-width: 1024px) {
+  .contain {
+    padding: 0 20px;
+  }
+
+  h1 {
+    text-align: start;
+  }
+}

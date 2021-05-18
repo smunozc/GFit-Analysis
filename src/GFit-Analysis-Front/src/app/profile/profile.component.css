@@ -23,7 +23,7 @@
 }
 
 #logout{
-    background-color: rgb(62, 233, 255);
+    background-color: #0de4e4;
     border: none;
     border-radius: 100%;
     color: black;
@@ -39,7 +39,7 @@
 }
 
 #logout:hover{
-    background-color: rgb(51, 188, 206);
+    background-color: #0bb6b6;
     font-size: 1.5rem;
     height: 4rem;
     transition-property: all;

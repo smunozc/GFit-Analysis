@@ -1,1 +1,9 @@
-<p>scoreboard not implemented yet</p>
+<div *ngIf="hasBackend; else elseBlock">
+    <p>Scoreboard not implemented yet</p>
+</div>
+
+<ng-template #elseBlock>
+    <div>
+        <p>Scoreboard only available when connected to backend</p>
+    </div>
+</ng-template>

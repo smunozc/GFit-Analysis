@@ -2,4 +2,5 @@
     <a id="profile-button" routerLink="/profile" routerLinkActive="selected"><i class="bi bi-person-fill"></i></a>
     <a id="home-button" routerLink="/dashboard" routerLinkActive="selected"><i class="bi bi-house-fill"></i></a>
     <a id="scoreboard-button" routerLink="/scoreboard" routerLinkActive="selected"><i class="bi bi-table"></i></a>
+    <a *ngIf="isAdmin" id="admin-button" routerLink="/admin" routerLinkActive="selected"><i class="bi bi-shield-shaded"></i></a>
 </div>

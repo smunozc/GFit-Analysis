@@ -137,6 +137,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     });
 
+    // Introduction warning
+    alert("Please make sure you have created and used a google fitness account for at least one or two weeks, otherwise the app won't work");
+
   }
 
   selectButtonSteps() {
@@ -302,6 +305,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.timerSubscription.unsubscribe();
+    this.buttonsTimerSubscription.unsubscribe();
   }
 
 }

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreboardComponent implements OnInit {
 
+  hasBackend: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('user') !== null){
+      this.hasBackend = true;
+    } else {
+      this.hasBackend = false;
+    }
   }
 
 }

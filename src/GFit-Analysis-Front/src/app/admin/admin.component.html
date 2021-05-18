@@ -1,1 +1,26 @@
-<p>admin works!</p>
+<div class="contain" *ngIf="hasBackend; else elseBlock">
+    <h1>ADMINISTRATION PANEL</h1>
+    <h2>List of users</h2>
+    <table>
+        <tr>
+            <th>Display Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let user of userList; index as i">
+            <td>{{user.displayName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
+        </tr>
+    </table>
+
+</div>
+
+<ng-template #elseBlock>
+    <div class="contain">
+        <h1>ADMINISTRATION PANEL</h1>
+        <h2>Users management only available with backend services</h2>
+    </div>
+</ng-template>
