@@ -10,6 +10,8 @@ public interface UserServiceI {
 	
 	public List<User> getAll();
 
-	public User save(User user1);
+	public User save(User user);
+	
+	public void delete(User user);
 
 }

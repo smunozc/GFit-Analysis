@@ -29,6 +29,10 @@ export class DataApiService {
       sunday.setDate(sunday.getDate() + 6);
       sunday.setHours(23, 59, 59, 999);
 
+      // Print for testing purposes
+      console.log("Lunes: " + monday.getTime());
+      console.log("Domingo: " + sunday.getTime());
+
       // This variables obtain the last 7 days
       // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of current week
       // let firstWeekDayMilis = todayDateMilis - 604800000;
@@ -68,6 +72,7 @@ export class DataApiService {
     const credential: JSON = JSON.parse(localStorage.getItem('credential'));
 
     if (credential != null) {
+      // console.log(credential);
       const url = 'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate';
 
       // Obtain monday of this week at 00:00 of my timezone
@@ -132,6 +137,38 @@ export class DataApiService {
 
     // POST request with HttpClient Object
     return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+  }
+
+  deleteUser(user: any): any {
+    const url = 'http://localhost:8080/user/delete';
+
+    // Request body
+
+    let body: any = {
+      "email": user.email,
+      "displayName": user.displayName,
+      "photoURL": user.photoURL,
+      "role": user.role
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+  }
+
+  getAllUsers(): any {
+    const url = 'http://localhost:8080/user/getAllUsers';
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
   }
 
 }

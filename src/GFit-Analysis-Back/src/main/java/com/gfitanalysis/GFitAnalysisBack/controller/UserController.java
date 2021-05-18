@@ -79,10 +79,60 @@ public class UserController {
 			userService.save(user);
 			return user;
 		} else {
-			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK
-			System.out.println("It entered in this else block...");
+			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the user should already exist)
+			System.out.println("It entered in the else block...");
 			userService.save(userLogin);
 			return userService.getByEmail(userLogin.getEmail());
+		}
+	}
+	
+	/**
+	 * This method deletes the specified user.
+	 * @param userToDelete User entity to be deleted.
+	 * @return true if the user was successfully deleted or false if it wasn't.
+	 */
+	@PostMapping(value = "/delete")
+	public boolean deleteUser(@RequestBody User userToDelete) {
+		
+		User user = userService.getByEmail(userToDelete.getEmail());
+
+		if (user != null) {
+			userService.delete(user);
+			if(userService.getByEmail(user.getEmail()) == null) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the user should already exist)
+			System.out.println("It entered in the else block...");
+			return false;
+		}
+		
+	}
+	
+	
+	/**
+	 * This method changes the specified User's role.
+	 * @param userToChange User to be modified.
+	 * @return true if the role change was successful or false if it wasn't.
+	 */
+	@PostMapping(value = "/changeRole")
+	public boolean changeRole(@RequestBody User userToChange) {
+		User user = userService.getByEmail(userToChange.getEmail());
+
+		if (user != null) {
+			user.setRole(userToChange.getRole());
+			userService.save(user);
+			if(userService.getByEmail(user.getEmail()).getRole() == userToChange.getRole()) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the user should already exist)
+			System.out.println("It entered in the else block...");
+			return false;
 		}
 	}
 	

@@ -20,13 +20,18 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 	@Override
-	public User save(User user1) {
-		return userRepository.save(user1);
+	public User save(User user) {
+		return userRepository.save(user);
 	}
 
 	@Override
 	public List<User> getAll() {
 		return this.userRepository.findAll();
+	}
+
+	@Override
+	public void delete(User user) {
+		this.userRepository.delete(user);
 	}
 
 }

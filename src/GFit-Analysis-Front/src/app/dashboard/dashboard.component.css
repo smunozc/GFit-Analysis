@@ -55,7 +55,7 @@ h2{
 }
 
 .button-selected {
-  background-color: rgb(62, 233, 255);
+  background-color: #0de4e4;
   border: none;
   border-radius: 5px;
   border-top-left-radius: 0;
@@ -82,7 +82,7 @@ h2{
 }
 
 .bubble {
-  background-color: rgb(62, 233, 255);
+  background-color: #0de4e4;
   border-radius: 100%;
   display: block;
   height: 120px;
@@ -179,7 +179,7 @@ h2{
   }
 
   .button-selected {
-    background-color: rgb(62, 233, 255);
+    background-color: #0de4e4;
     border: none;
     border-radius: 5px;
     border-top-left-radius: 0;
