@@ -131,6 +131,8 @@ export class ChartComponent implements OnInit, OnDestroy, OnChanges {
     }, (error) => { // The application will force a logout when the request is unauthenticated.
       if (error.status === 401) {
         this.authService.logoutUser();
+      } else if(error.status === 403){
+        alert("Please make sure you have created and used a google fitness account until you have steps and calories data, otherwise the app won't work");
       }
     });
 
@@ -169,6 +171,8 @@ export class ChartComponent implements OnInit, OnDestroy, OnChanges {
     }, (error) => {
       if (error.status === 401) {
         this.authService.logoutUser();
+      } else if(error.status === 403){
+        alert("Please make sure you have created and used a google fitness account until you have steps and calories data, otherwise the app won't work");
       }
     });
 

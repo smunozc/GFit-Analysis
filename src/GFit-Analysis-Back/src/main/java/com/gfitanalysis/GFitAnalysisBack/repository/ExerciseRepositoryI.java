@@ -1,15 +1,17 @@
 package com.gfitanalysis.GFitAnalysisBack.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.gfitanalysis.GFitAnalysisBack.model.Exercise;
+import com.gfitanalysis.GFitAnalysisBack.model.ExerciseId;
 import com.gfitanalysis.GFitAnalysisBack.model.User;
 
 @Repository
-public interface ExerciseRepositoryI extends JpaRepository<Exercise, String> {
+public interface ExerciseRepositoryI extends JpaRepository<Exercise, ExerciseId> {
 
 	/**
 	 * Finds a list of exercises by the user that did them
@@ -25,5 +27,7 @@ public interface ExerciseRepositoryI extends JpaRepository<Exercise, String> {
 	 * @return an Exercise object
 	 */
 	public Exercise findByDateAndUser(String date, User user);
+	
+	public Optional<Exercise> findById(ExerciseId id);
 
 }

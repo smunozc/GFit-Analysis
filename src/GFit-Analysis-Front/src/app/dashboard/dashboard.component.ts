@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   selectorButtonsLoaded: boolean = false;
   isAuth: boolean = false;
   exerciseDataSent: boolean = false;
-  exerciseWeek: Array<any> = [];
+  // exerciseWeek: Array<any> = [];
   private timerSubscription: Subscription;
   private buttonsTimerSubscription: Subscription;
 
@@ -112,7 +112,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
 
-    this.timerSubscription = timer(0, 5000).subscribe(() => {
+    this.timerSubscription = timer(0, 2000).subscribe(() => {
 
       if (this.exerciseDataSent) {
 
@@ -136,9 +136,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 
     });
-
-    // Introduction warning
-    alert("Please make sure you have created and used a google fitness account for at least one or two weeks, otherwise the app won't work");
 
   }
 
@@ -171,6 +168,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   loadDatatoBackend(optionalUser?: string) {
+    let exerciseWeek = [];
     let stepsWeek: Array<any> = [];
     let caloriesWeek: Array<any> = [];
     let user = null;
@@ -181,11 +179,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       user = optionalUser;
     }
 
-    console.log("DATA LOAD: " + JSON.stringify(user));
+    // console.log("DATA LOAD: " + JSON.stringify(user));
 
     this.dataApi.getWeekDailyCaloriesCount().subscribe(caloriesData => {
 
-      for (let i = 0; i < caloriesData.bucket.length; i++) { // These data buckets come with arrays of 7, which resembles a hole week.
+      for (let i = 0; i < 7; i++) { // These data buckets come with arrays of 7, which resembles a hole week.
 
         if (caloriesData.bucket[i].dataset[0].point.length > 0) {
 
@@ -217,7 +215,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.dataApi.getWeekDailyStepCount().subscribe(stepsData => {
 
-        for (let i = 0; i < stepsData.bucket.length; i++) {
+        for (let i = 0; i < 7; i++) {
 
           if (stepsData.bucket[i].dataset[0].point.length > 0) {
 
@@ -249,12 +247,12 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
         if (stepsWeek !== null && caloriesWeek !== null) {
 
-          let weekLength = stepsWeek.length;
+          let weekLength = caloriesWeek.length;
 
           for (let i = 0; i < weekLength; i++) {
 
             let todayDate: Date = new Date();
-            let date: Date = new Date(parseInt(stepsWeek[i].startTimeMillis));
+            let date: Date = new Date(parseInt(caloriesWeek[i].startTimeMillis));
             let simpleDate: string = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
 
             if (date <= todayDate) {
@@ -269,15 +267,15 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
                 "user": user
               };
 
-              this.exerciseWeek.push(exerciseDay);
+              exerciseWeek.push(exerciseDay);
 
             }
 
           }
 
-          console.log("EXERCISES: " + JSON.stringify(this.exerciseWeek));
+          console.log(exerciseWeek);
 
-          this.dataApi.postUserData(this.exerciseWeek, user).subscribe(refreshUser => {
+          this.dataApi.postUserData(exerciseWeek, user).subscribe(refreshUser => {
 
             console.log("Save");
             console.log(refreshUser);
