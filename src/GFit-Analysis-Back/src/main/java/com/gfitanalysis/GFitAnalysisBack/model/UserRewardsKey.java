@@ -11,28 +11,28 @@ public class UserRewardsKey implements Serializable {
 	private static final long serialVersionUID = -1790754260642100887L;
 	
 	@Column(name = "user_id")
-	private int userId;
+	private Integer userId;
 	
 	@Column(name = "reward_id")
-	private int rewardId;
+	private Integer rewardId;
 
 	public UserRewardsKey() {
 		super();
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
-	public int getRewardId() {
+	public Integer getRewardId() {
 		return rewardId;
 	}
 
-	public void setRewardId(int rewardId) {
+	public void setRewardId(Integer rewardId) {
 		this.rewardId = rewardId;
 	}
 

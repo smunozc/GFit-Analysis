@@ -30,8 +30,8 @@ export class DataApiService {
       sunday.setHours(23, 59, 59, 999);
 
       // Print for testing purposes
-      console.log("Lunes: " + monday.getTime());
-      console.log("Domingo: " + sunday.getTime());
+      // console.log("Lunes: " + monday.getTime());
+      // console.log("Domingo: " + sunday.getTime());
 
       // This variables obtain the last 7 days
       // let todayDateMilis = Date.now(); //TODO wrong, have to obtain the monday and sunday of current week
@@ -49,6 +49,7 @@ export class DataApiService {
       };
 
       // Headers for Authorization
+
       let headers = new HttpHeaders();
       headers = headers.set('Content-Type', 'application/json; charset=utf-8');
       headers = headers.set('Authorization', 'Bearer ' + credential['oauthAccessToken']);

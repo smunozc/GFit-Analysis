@@ -71,7 +71,7 @@ public class UserController {
 			if(userLogin.getExercise() != null) {
 				user.getExercise().addAll(userLogin.getExercise());
 				
-				for (Exercise exercise : userLogin.getExercise()) {
+				for (Exercise exercise : user.getExercise()) {
 					this.exerciseService.save(exercise);
 				}
 				
@@ -79,6 +79,7 @@ public class UserController {
 			userService.save(user);
 			return user;
 		} else {
+			
 			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the user should already exist)
 			System.out.println("It entered in the else block...");
 			userService.save(userLogin);
@@ -117,7 +118,7 @@ public class UserController {
 	 * @param userToChange User to be modified.
 	 * @return true if the role change was successful or false if it wasn't.
 	 */
-	@PostMapping(value = "/changeRole")
+	// @PostMapping(value = "/changeRole")
 	public boolean changeRole(@RequestBody User userToChange) {
 		User user = userService.getByEmail(userToChange.getEmail());
 

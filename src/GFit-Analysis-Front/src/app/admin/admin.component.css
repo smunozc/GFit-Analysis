@@ -13,7 +13,7 @@ h2 {
   margin: 10px;
 }
 
-table {
+#table {
   background-color: white;
   border-collapse: collapse;
   border-radius: 5px;
@@ -23,9 +23,17 @@ table {
   width: 90%;
 }
 
-tr {
-  border: none;
+#table tr {
   border-bottom: 1px solid rgb(59, 59, 59);
+}
+
+#table tr td{
+  padding: 10px;
+  text-align: left;
+}
+
+#table tr td:nth-child(4), #table tr td:nth-child(3){
+  text-align: center;
 }
 
 @media screen and (min-width: 1024px) {

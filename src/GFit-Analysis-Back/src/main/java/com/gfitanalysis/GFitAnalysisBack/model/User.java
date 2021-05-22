@@ -24,7 +24,7 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int id;
+	private Integer id;
 	
 	@Column(nullable = false, unique = true)
 	private String email;
@@ -62,11 +62,11 @@ public class User implements Serializable{
 		super();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -116,6 +116,28 @@ public class User implements Serializable{
 
 	public void setUserRewards(Set<UserRewards> userRewards) {
 		this.userRewards = userRewards;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 		
 }

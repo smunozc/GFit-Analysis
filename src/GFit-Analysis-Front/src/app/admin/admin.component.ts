@@ -15,8 +15,8 @@ export class AdminComponent implements OnInit {
   constructor(private dataApi: DataApiService) { }
 
   ngOnInit(): void {
-    
-    if(localStorage.getItem('user') !== null){
+
+    if (localStorage.getItem('user') !== null) {
       this.hasBackend = true;
 
       this.dataApi.getAllUsers().subscribe(users => {
@@ -24,22 +24,28 @@ export class AdminComponent implements OnInit {
         this.userLoaded = true;
       });
     }
-    
+
   }
 
-  deleteUser(user:any){
-    this.dataApi.deleteUser(user).subscribe(isDeleted =>{
-      if(isDeleted){
-        for (let i = 0; i < this.userList.length; i++){
-          if(this.userList[i].email === user.email){
-            this.userList.splice(i,1);
+  deleteUser(user: any) {
+    let confirmation = confirm('Are you sure you want to delete this user: ' + user.email);
+
+    if (confirmation) {
+      
+      this.dataApi.deleteUser(user).subscribe(isDeleted => {
+        if (isDeleted) {
+          for (let i = 0; i < this.userList.length; i++) {
+            if (this.userList[i].email === user.email) {
+              this.userList.splice(i, 1);
+            }
           }
+          alert("The user has been successfully deleted");
+        } else {
+          alert("Couldn't delete the user");
         }
-        alert("The user has been successfully deleted");
-      } else {
-        alert("Couldn't delete the user");
-      }
-    });
+      });
+    }
+
   }
 
 }
