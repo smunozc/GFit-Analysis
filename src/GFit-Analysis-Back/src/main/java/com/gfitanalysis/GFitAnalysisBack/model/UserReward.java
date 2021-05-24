@@ -10,11 +10,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "USER_REWARDS")
-public class UserRewards implements Serializable {
+public class UserReward implements Serializable {
 
 	private static final long serialVersionUID = -7191199132267720250L;
 
@@ -29,6 +32,7 @@ public class UserRewards implements Serializable {
 	
 	// @JsonManagedReference
 	@ManyToOne
+	@Cascade({ CascadeType.SAVE_UPDATE })
     @MapsId("rewardId")
     @JoinColumn(name = "reward_id")
 	private Reward reward;
@@ -36,7 +40,7 @@ public class UserRewards implements Serializable {
 	@Column(nullable = false)
 	private String date;
 
-	public UserRewards() {
+	public UserReward() {
 		super();
 	}
 
@@ -70,6 +74,37 @@ public class UserRewards implements Serializable {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((reward == null) ? 0 : reward.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserReward other = (UserReward) obj;
+		if (reward == null) {
+			if (other.reward != null)
+				return false;
+		} else if (!reward.equals(other.reward))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 
 }

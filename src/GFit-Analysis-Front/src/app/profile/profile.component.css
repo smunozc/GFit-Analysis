@@ -1,65 +1,162 @@
-.banner{
-    align-items: center;
-    background: linear-gradient(to bottom right, #2D1D7A 16%, #573170 32%, #804565 48%, #AA585B 64%, #D36C50 80%, #FD8046 96%);
-    border-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    margin: 50px auto;
-    width: 90%;
+.banner {
+  align-items: center;
+  background: linear-gradient(to bottom right, #2D1D7A 16%, #573170 32%, #804565 48%, #AA585B 64%, #D36C50 80%, #FD8046 96%);
+  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 30px auto;
+  width: 90%;
 }
 
-#profile-picture{
-    border-radius: 100%;
-    margin-top: 60px;
-    width: 8rem;
+#profile-picture {
+  border-radius: 100%;
+  margin-top: 60px;
+  width: 8rem;
 }
 
-#username{
-    color: white;
-    margin-bottom: 60px;
+#username {
+  color: white;
+  margin-bottom: 60px;
 }
 
-#logout{
-    background-color: #0de4e4;
-    border: none;
-    border-radius: 100%;
-    color: black;
-    font-size: 1.2rem;
-    height: 3rem;
-    padding-right: 2px;
-    position: absolute;
-    right: 10%;
-    text-align: center;
-    top: 10%;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
-    width: 3rem;
+#logout {
+  background-color: #0de4e4;
+  border: none;
+  border-radius: 100%;
+  color: black;
+  font-size: 1.2rem;
+  height: 3rem;
+  padding-right: 2px;
+  position: absolute;
+  right: 10%;
+  text-align: center;
+  top: 10%;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+  width: 3rem;
 }
 
-#logout:hover{
-    background-color: #0bb6b6;
-    font-size: 1.5rem;
-    height: 4rem;
-    transition-property: all;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in;
-    text-align: center;
-    width: 4rem;
+#logout:hover {
+  background-color: #0bb6b6;
+  font-size: 1.5rem;
+  height: 4rem;
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in;
+  text-align: center;
+  width: 4rem;
 }
 
-.btn{
-    margin: 20px 0;
+.btn {
+  margin: 20px 0;
 }
 
 .badges {
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    height: 300px;
-    margin: 0 auto;
-    width: 90%
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  margin: 30px auto;
+  width: 90%
 }
-.badges h2{
-    padding: 5px;
+
+.badges h2 {
+  width: 100%;
+}
+
+.badges h2,
+.card,
+p {
+  margin: 20px;
+}
+
+.card {
+  position: relative;
+  background: -webkit-repeating-linear-gradient(-45deg, #08b6b6, #d5ffa5);
+  background-size: 300%;
+  animation: animateTextBackground 10s ease-in-out infinite;
+}
+
+.card-body{
+  background-color: rgb(252, 252, 252);
+  border-radius: inherit;
+}
+
+.achieveDate{
+  font-weight: bold;
+}
+
+.shadow:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: inherit;
+  height: inherit;
+  z-index: -2;
+  -webkit-border-radius: inherit;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: inherit;
+  -moz-background-clip: padding;
+  border-radius: inherit;
+  background-clip: padding-box;
+  pointer-events: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadow:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: inherit;
+  height: inherit;
+  z-index: -2;
+  -webkit-border-radius: inherit;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: inherit;
+  -moz-background-clip: padding;
+  border-radius: inherit;
+  background-clip: padding-box;
+  pointer-events: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@keyframes animateTextBackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  25% {
+    background-position: 100% 0;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0 100%;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }

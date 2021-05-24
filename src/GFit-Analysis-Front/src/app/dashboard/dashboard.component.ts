@@ -16,12 +16,15 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   totalCalories: number = null;
   eachDayValues: any;
   daysOfWeek: Array<string>;
+  unachievedBadges: Array<any> = null;
   dataType: string = 'steps';
   isWeekly: boolean = true;
   stepsSelected: boolean = true;
   selectorButtonsLoaded: boolean = false;
   isAuth: boolean = false;
   exerciseDataSent: boolean = false;
+  goalsLoaded: boolean = false;
+  hasGoalsLeft: boolean = false;
   // exerciseWeek: Array<any> = [];
   private timerSubscription: Subscription;
   private buttonsTimerSubscription: Subscription;
@@ -78,7 +81,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
         auth.getIdTokenResult().then((token) => {
 
-          let epochExp = parseInt(token.claims.exp); // Takes the expiration time in epoch from the actual token
+          let epochExp = parseInt(token.claims.exp); // Takes the expiration time in epoch from the current token
 
           if (epochExp < 10000000000) {
             epochExp *= 1000; // convert to milliseconds (Epoch is usually expressed in seconds, but Javascript uses Milliseconds)
@@ -126,6 +129,18 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
           if (localStorage.getItem('user') !== undefined && localStorage.getItem('user') !== null) {
 
             this.loadDatatoBackend();
+
+            // Get unachieved badges
+            this.dataApi.getUnachievedBadges(JSON.parse(localStorage.getItem('user'))).subscribe(data => {
+              if (data !== null) {
+                this.unachievedBadges = data;
+                this.hasGoalsLeft = true;
+                console.log(this.unachievedBadges);
+              } else {
+                this.hasGoalsLeft = false;
+              }
+              this.goalsLoaded = true;
+            });
 
           } else {
             console.log("Could not retrieve user, possibly due to lack of connection to the backend");

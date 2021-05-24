@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   user:any;
   hasBackend: boolean;
+  hasRewards: boolean;
 
   constructor(private authService: AuthService) { }
 
@@ -20,6 +21,11 @@ export class ProfileComponent implements OnInit {
     if(localStorage.getItem('user') !== null){
       this.user = JSON.parse(localStorage.getItem('user'));
       this.hasBackend = true;
+      if(this.user.userRewards.length > 0){
+        this.hasRewards = true;
+      } else {
+        this.hasRewards = false;
+      }
     } else {
       this.user = JSON.parse(localStorage.getItem('googleUser'));
       this.hasBackend = false;

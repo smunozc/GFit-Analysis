@@ -2,7 +2,6 @@ package com.gfitanalysis.GFitAnalysisBack.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,46 +10,46 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Version;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "EXERCISE")
 @IdClass(ExerciseId.class)
-public class Exercise implements Serializable{
+public class Exercise implements Serializable {
 
 	private static final long serialVersionUID = 4178561054882074019L;
-	
+
 	@Id
 	@Column(nullable = false)
 	private String date;
-	
+
 	@Column(nullable = true)
 	private int caloriesBurned;
-	
+
 	@Column(nullable = true)
 	private int estimatedSteps;
-	
+
 	@Id
 	@JsonBackReference
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	@JoinColumn(name = "fk_user")
 	private User user;
-	
-	//@Version
-    //private Integer version;
+
+	// @Version
+	// private Integer version;
 
 	public Exercise() {
 		super();
 	}
 
 	/*
-	public Exercise(String date, User user) {
-		super();
-		this.date = date;
-		this.user = user;
-	}
+	 * public Exercise(String date, User user) { super(); this.date = date;
+	 * this.user = user; }
 	 */
 
 	public int getCaloriesBurned() {

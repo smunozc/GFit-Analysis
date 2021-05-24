@@ -1,55 +1,86 @@
 <div class="contain">
-    <h1>DASHBOARD</h1>
+  <h1>DASHBOARD</h1>
 
-    <div id="buttons-container" *ngIf="selectorButtonsLoaded">
-        <button (click)="selectButtonSteps()" id="button-steps" class="button-selected"><h2 *ngIf="stepsSelected" id="totalSteps" class="totalDataVal-selected">{{totalSteps}}</h2>TOTAL STEPS</button>
-        <button (click)="selectButtonCalories()" id="button-calories" class="button"><h2 *ngIf="!stepsSelected" id="totalCalories" class="totalDataVal-selected">{{totalCalories}}</h2>TOTAL CALORIES</button>
+  <div id="buttons-container" *ngIf="selectorButtonsLoaded">
+    <button (click)="selectButtonSteps()" id="button-steps" class="button-selected">
+      <h2 *ngIf="stepsSelected" id="totalSteps" class="totalDataVal-selected">{{totalSteps}}</h2>TOTAL STEPS
+    </button>
+    <button (click)="selectButtonCalories()" id="button-calories" class="button">
+      <h2 *ngIf="!stepsSelected" id="totalCalories" class="totalDataVal-selected">{{totalCalories}}</h2>TOTAL CALORIES
+    </button>
+  </div>
+
+  <div class="bubble">
+    <select name="select" class="form-select" id="select">
+      <option value="weekly" selected>WEEKLY</option>
+      <option value="daily">DAILY</option>
+    </select>
+  </div>
+
+  <div *ngIf="isWeekly; else isDaily">
+
+    <div *ngIf="stepsSelected; else elseBlock" class="chart">
+      <h2>Steps overview</h2>
+      <app-chart [dataType]="dataType" [isAuth]="isAuth"></app-chart>
     </div>
 
-    <div class="bubble">
-        <select name="select" class="form-select" id="select">
-            <option value="weekly" selected>WEEKLY</option>
-            <option value="daily">DAILY</option>
-        </select>
-    </div>
-
-    <div *ngIf="isWeekly; else isDaily">
-
-        <div *ngIf="stepsSelected; else elseBlock" class="chart">
-            <h2>Steps overview</h2>
-            <app-chart [dataType]="dataType" [isAuth]="isAuth"></app-chart>
-        </div>
-    
-        <ng-template #elseBlock>
-            <div class="chart">
-                <h2>Calories overview</h2>
-                <app-chart [dataType]="dataType" [isAuth]="isAuth"></app-chart>
-            </div>
-        </ng-template>
-
-    </div>
-
-    <ng-template #isDaily>
-
-        <div *ngIf="stepsSelected; else elseBlock" class="chart">
-            <h2>Steps overview</h2>
-            
-        </div>
-    
-        <ng-template #elseBlock>
-            <div class="chart">
-                <h2>Calories overview</h2>
-                <div class="card" *ngFor="let day of eachDayValues; index as i">
-                    <div class="card-body">
-                        <h5 class="card-title">{{daysOfWeek[i]}}</h5>
-                        <p class="card-text">{{day[daysOfWeek[i]]}}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                </div>
-            </div>
-        </ng-template>
-
+    <ng-template #elseBlock>
+      <div class="chart">
+        <h2>Calories overview</h2>
+        <app-chart [dataType]="dataType" [isAuth]="isAuth"></app-chart>
+      </div>
     </ng-template>
 
-    
+  </div>
+
+  <ng-template #isDaily>
+
+    <div *ngIf="stepsSelected; else elseBlock" class="chart">
+      <h2>Steps overview</h2>
+
+    </div>
+
+    <ng-template #elseBlock>
+      <div class="chart">
+        <h2>Calories overview</h2>
+        <div class="card" *ngFor="let day of eachDayValues; index as i">
+          <div class="card-body">
+            <h5 class="card-title">{{daysOfWeek[i]}}</h5>
+            <p class="card-text">{{day[daysOfWeek[i]]}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+  </ng-template>
+
+  <div class="unachieved" *ngIf="unachievedBadges != null; else loadingUnachieved">
+
+    <h2>Goals</h2>
+
+    <div class="card-wrapper" *ngFor="let reward of unachievedBadges">
+      <div class="card-image">
+        <img src="{{reward.badgeImg}}" alt="Badge">
+      </div>
+      <div class="card-content">
+        <h3>{{reward.name}}</h3>
+        <p>Goal: {{reward.conditionNum}} {{reward.dataType}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #loadingUnachieved>
+
+    <div class="unachieved">
+      <h2>Goals</h2>
+
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+  </ng-template>
+
 </div>
