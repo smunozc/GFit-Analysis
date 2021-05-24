@@ -9,7 +9,7 @@ h1 {
   text-align: center;
 }
 
-h2{
+h2 {
   margin: 10px;
 }
 
@@ -42,7 +42,7 @@ h2{
   width: 60%;
 }
 
-.totalDataVal{
+.totalDataVal {
   font-size: 1rem;
   margin: 0;
   transition-property: font-size;
@@ -73,7 +73,7 @@ h2{
   width: 80%;
 }
 
-.totalDataVal-selected{
+.totalDataVal-selected {
   font-size: 1.5rem;
   margin: 0;
   transition-property: font-size;
@@ -81,10 +81,11 @@ h2{
   transition-timing-function: ease-in;
 }
 
+/* The display is set on 'none' none because the feature is not complete, originally the display was set on 'block' */
 .bubble {
+  display: none;
   background-color: #0de4e4;
   border-radius: 100%;
-  display: block;
   height: 120px;
   position: absolute;
   right: 0;
@@ -112,13 +113,65 @@ h2{
   z-index: 1;
 }
 
+.unachieved{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  width:90%;
+}
+
+.unachieved h2{
+  width: 100%;
+}
+
+.card-wrapper {
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 15%;
+  border-radius: 5px;
+  margin: 10px;
+  -webkit-animation: scaledown 0.3s linear;
+  -moz-animation: scaledown 0.3s linear;
+  animation: scaledown 0.2s linear;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+  background-color: white;
+  height: 150px;
+  width: 250px;
+}
+
+.card-wrapper:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  -webkit-animation: scale 0.3s linear;
+  -moz-animation: scale 0.3s linear;
+  animation: scale 0.1s linear;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+
+.card-image img {
+  border-radius: 5px 0 0 5px;
+  height: 90%;
+  width: 90px;
+  object-fit: cover;
+  padding: 5px;
+}
+
+.card-content h3 {
+  padding-right: 5px;
+  font-size: 1em;
+  margin-top: 15px;
+}
+
 @media screen and (min-width: 480px) {
   .button {
     font-size: 0.6rem;
     width: 40%;
   }
 
-  .totalDataVal{
+  .totalDataVal {
     font-size: 1.2rem;
   }
 
@@ -127,7 +180,7 @@ h2{
     width: 60%;
   }
 
-  .totalDataVal-selected{
+  .totalDataVal-selected {
     font-size: 1.5rem;
   }
 
@@ -173,7 +226,7 @@ h2{
     width: 40%;
   }
 
-  .totalDataVal{
+  .totalDataVal {
     font-size: 1rem;
     margin: 0;
   }
@@ -192,7 +245,7 @@ h2{
     width: 40%;
   }
 
-  .totalDataVal-selected{
+  .totalDataVal-selected {
     font-size: 1.6rem;
     margin: 0;
   }

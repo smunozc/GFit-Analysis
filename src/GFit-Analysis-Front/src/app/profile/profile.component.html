@@ -1,23 +1,39 @@
 <div class="banner">
 
-    <img id="profile-picture" src="{{user.photoURL}}" alt="Profile picture"/>
+  <img id="profile-picture" src="{{user.photoURL}}" alt="Profile picture" />
 
-    <h2 id="username">{{user.displayName}}</h2>
+  <h2 id="username">{{user.displayName}}</h2>
 
-    <!-- <button id="edit-profile" class="btn btn-primary">Edit profile</button> -->
-    
-    <button id="logout" (click)="logout()"><i class="bi bi-box-arrow-right"></i></button>
+  <!-- <button id="edit-profile" class="btn btn-primary">Edit profile</button> -->
+
+  <button id="logout" (click)="logout()"><i class="bi bi-box-arrow-right"></i></button>
 
 </div>
 
-<div class="badges">
-    <div *ngIf="hasBackend; else elseBlock">
-        <h2>Badges</h2>
-
+<div *ngIf="hasBackend; else elseBlock">
+  <div *ngIf="hasRewards; else noRewards" class="badges">
+    <h2>Badges</h2>
+    <div *ngFor="let userReward of user.userRewards; index as i" class="card shadow" style="width: 18rem;">
+      <img class="card-img-top" src="{{userReward.reward.badgeImg}}" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{userReward.reward.name}}</h4>
+        <p class="card-text">{{userReward.reward.description}}</p>
+        <p class="card-text achieveDate">Achieved on: {{userReward.date}}</p>
+      </div>
     </div>
+  </div>
 
-    <ng-template #elseBlock>
-        <h2>Badges only available with backend service</h2>
-    </ng-template>
+  <ng-template #noRewards>
+    <div class="badges">
+      <h2>Badges</h2>
+      <p>You haven't earned any badge yet!</p>
+    </div>
+  </ng-template>
 
 </div>
+
+<ng-template #elseBlock>
+  <div class="badges">
+    <h2>Badges only available with backend service</h2>
+  </div>
+</ng-template>

@@ -172,4 +172,25 @@ export class DataApiService {
     return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
   }
 
+  getUnachievedBadges(user: any){
+    const url = 'http://localhost:8080/reward/getUnachieved';
+
+    // Request body
+
+    let body: any = {
+      "email": user.email,
+      "displayName": user.displayName,
+      "photoURL": user.photoURL,
+      "role": user.role
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+  }
+
 }

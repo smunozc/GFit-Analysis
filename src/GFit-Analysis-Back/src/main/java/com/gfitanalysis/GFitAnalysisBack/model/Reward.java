@@ -15,43 +15,51 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "REWARD")
-public class Reward implements Serializable{
+public class Reward implements Serializable {
 
 	private static final long serialVersionUID = 6112989436599505122L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reward_id")
 	private int id;
-	
-	@Column(nullable = false)
+
+	@Column(nullable = false, unique = true)
 	private String name;
-	
+
 	@Column(nullable = false)
-	private String type;
-	
+	private String description;
+
+	@Column(nullable = false)
+	private BadgeType badgeType;
+
+	@Column(nullable = false)
+	private DataType dataType;
+
+	@Column(nullable = false)
+	private Integer conditionNum;
+
 	@Column(nullable = true)
 	private String badgeImg;
-	
+
 	/*
-	@ManyToMany(mappedBy = "rewards")
-	private List<User> users;
-	*/
-	
+	 * @ManyToMany(mappedBy = "rewards") private List<User> users;
+	 */
+
 	@JsonBackReference
 	@OneToMany(mappedBy = "reward")
-	private Set<UserRewards> userRewards;
+	private Set<UserReward> userRewards;
 
 	public Reward() {
 		super();
 	}
 
-	public int getIdReward() {
+	public int getId() {
 		return id;
 	}
 
-	public void setIdReward(int idReward) {
-		this.id = idReward;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -62,12 +70,36 @@ public class Reward implements Serializable{
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BadgeType getBadgeType() {
+		return badgeType;
+	}
+
+	public void setBadgeType(BadgeType type) {
+		this.badgeType = type;
+	}
+
+	public DataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(DataType dataType) {
+		this.dataType = dataType;
+	}
+
+	public Integer getConditionNum() {
+		return conditionNum;
+	}
+
+	public void setConditionNum(Integer conditionNum) {
+		this.conditionNum = conditionNum;
 	}
 
 	public String getBadgeImg() {
@@ -78,12 +110,37 @@ public class Reward implements Serializable{
 		this.badgeImg = badgeImg;
 	}
 
-	public Set<UserRewards> getUserRewards() {
+	public Set<UserReward> getUserRewards() {
 		return userRewards;
 	}
 
-	public void setUserRewards(Set<UserRewards> userRewards) {
+	public void setUserRewards(Set<UserReward> userRewards) {
 		this.userRewards = userRewards;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reward other = (Reward) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 }
