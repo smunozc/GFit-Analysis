@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gfitanalysis.GFitAnalysisBack.model.DataType;
 import com.gfitanalysis.GFitAnalysisBack.model.Exercise;
+import com.gfitanalysis.GFitAnalysisBack.model.Progress;
 import com.gfitanalysis.GFitAnalysisBack.model.Reward;
 import com.gfitanalysis.GFitAnalysisBack.model.User;
 import com.gfitanalysis.GFitAnalysisBack.model.UserReward;
@@ -211,6 +212,26 @@ public class UserController {
 			// already exist)
 			System.out.println("It entered in the else block...");
 			return false;
+		}
+	}
+	
+	/**
+	 * This method allows the front end to send login information from the user.
+	 * 
+	 * @param userLogin is the user sent from the front end.
+	 * @return returns the user to the front once it has been through the database.
+	 */
+	@PostMapping("/getProgress")
+	public Progress getProgress(@RequestBody User userFront) {
+
+		User user = userService.getByEmail(userFront.getEmail());
+
+		if (user != null) {
+			Progress progress = new Progress(user.getExerciseSummary(DataType.STEPS), user.getExerciseSummary(DataType.CALORIES));
+			
+			return progress;
+		} else {
+			return null;
 		}
 	}
 

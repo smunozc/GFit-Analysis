@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   totalSteps: number = null;
   totalCalories: number = null;
   eachDayValues: any;
+  progress: any;
   daysOfWeek: Array<string>;
   unachievedBadges: Array<any> = null;
   dataType: string = 'steps';
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   isAuth: boolean = false;
   exerciseDataSent: boolean = false;
   goalsLoaded: boolean = false;
+  progressLoaded: boolean = false;
   hasGoalsLeft: boolean = false;
   // exerciseWeek: Array<any> = [];
   private timerSubscription: Subscription;
@@ -130,18 +132,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
             this.loadDatatoBackend();
 
-            // Get unachieved badges
-            this.dataApi.getUnachievedBadges(JSON.parse(localStorage.getItem('user'))).subscribe(data => {
-              if (data !== null) {
-                this.unachievedBadges = data;
-                this.hasGoalsLeft = true;
-                console.log(this.unachievedBadges);
-              } else {
-                this.hasGoalsLeft = false;
-              }
-              this.goalsLoaded = true;
-            });
-
           } else {
             console.log("Could not retrieve user, possibly due to lack of connection to the backend");
           }
@@ -160,8 +150,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     let buttonSteps = document.getElementById('button-steps');
     let buttonCalories = document.getElementById('button-calories');
 
-    buttonSteps.className = 'button-selected';
-    buttonCalories.className = 'button';
+    buttonSteps.classList.remove('button', 'boxShadow');
+    buttonSteps.classList.add('button-selected', 'boxShadowHover');
+
+    buttonCalories.classList.remove('button-selected', 'boxShadowHover');
+    buttonCalories.classList.add('button', 'boxShadow');
 
     // chart modification
 
@@ -174,8 +167,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     let buttonSteps = document.getElementById('button-steps');
     let buttonCalories = document.getElementById('button-calories');
 
-    buttonSteps.className = 'button';
-    buttonCalories.className = 'button-selected';
+    buttonCalories.classList.remove('button', 'boxShadow');
+    buttonCalories.classList.add('button-selected', 'boxShadowHover');
+
+    buttonSteps.classList.remove('button-selected', 'boxShadowHover');
+    buttonSteps.classList.add('button', 'boxShadow');
 
     // chart modification
 
@@ -298,6 +294,28 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
             this.exerciseDataSent = true;
 
             localStorage.setItem('user', JSON.stringify(refreshUser));
+
+            // Get unachieved badges
+            this.dataApi.getUnachievedBadges(refreshUser).subscribe(data => {
+              if (data !== null) {
+                this.unachievedBadges = data;
+                this.hasGoalsLeft = true;
+              } else {
+                this.hasGoalsLeft = false;
+              }
+              this.goalsLoaded = true;
+            });
+
+            // Get progress
+            this.dataApi.getProgress(refreshUser).subscribe(data => {
+              if (data !== null) {
+                this.progress = data;
+                
+              } else {
+                console.log("User has no progress at all");
+              }
+              this.progressLoaded = true;
+            });
 
           }, (error) => {
             if (error.status === 0) {

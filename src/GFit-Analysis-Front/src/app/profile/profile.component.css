@@ -19,6 +19,7 @@
 
 #username {
   color: white;
+  font-size: 2rem;
   margin-bottom: 60px;
 }
 
@@ -60,10 +61,13 @@
   flex-wrap: wrap;
   height: 100%;
   margin: 30px auto;
+  margin-bottom: 100px;
   width: 90%
 }
 
 .badges h2 {
+  color: black;
+  font-size: 2rem;
   width: 100%;
 }
 
@@ -73,19 +77,23 @@ p {
   margin: 20px;
 }
 
+.badges #noBadgesYetMsg{
+  font-size: 1.1rem;
+}
+
 .card {
   position: relative;
   background: -webkit-repeating-linear-gradient(-45deg, #08b6b6, #d5ffa5);
   background-size: 300%;
-  animation: animateTextBackground 10s ease-in-out infinite;
+  animation: animateBackground 10s ease-in-out infinite;
 }
 
-.card-body{
+.card-body {
   background-color: rgb(252, 252, 252);
   border-radius: inherit;
 }
 
-.achieveDate{
+.achieveDate {
   font-weight: bold;
 }
 
@@ -139,7 +147,7 @@ p {
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@keyframes animateTextBackground {
+@keyframes animateBackground {
   0% {
     background-position: 0 0;
   }
@@ -158,5 +166,45 @@ p {
 
   100% {
     background-position: 0 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #profile-picture {
+    width: 10rem;
+  }
+
+  #username {
+    font-size: 3rem;
+  }
+
+  #logout {
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 4rem;
+  }
+
+  #logout:hover {
+    font-size: 1.8rem;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .badges {
+    background-color: rgb(131, 97, 146);
+    background-image: url("../../assets/Backgrounds/AchievementsBg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  .badges h2 {
+    color: white;
+    font-size: 3rem;
+  }
+
+  .badges #noBadgesYetMsg{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 200;
   }
 }
