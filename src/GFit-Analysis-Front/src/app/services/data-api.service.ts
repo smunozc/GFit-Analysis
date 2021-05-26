@@ -85,6 +85,14 @@ export class DataApiService {
       sunday.setDate(sunday.getDate() + 6);
       sunday.setHours(23, 59, 59, 999);
 
+      // Get Scoreboard and save it in localStorage
+      let mondayString = monday.getFullYear() + "/" + ("0" + (monday.getMonth() + 1)).slice(-2) + "/" + ("0" + (monday.getDate())).slice(-2);
+      let sundayString = sunday.getFullYear() + "/" + ("0" + (sunday.getMonth() + 1)).slice(-2) + "/" + ("0" + (sunday.getDate())).slice(-2);
+
+      this.getScoreboard(mondayString, sundayString).subscribe(data => {
+        localStorage.setItem('scoreboard', JSON.stringify(data));
+      });
+
       // Body of the POST request
       const body: any = {
         "aggregateBy": [{
@@ -163,6 +171,17 @@ export class DataApiService {
 
   getAllUsers(): any {
     const url = 'http://localhost:8080/user/getAllUsers';
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
+  }
+
+  getScoreboard(dateStart: string, dateEnd: string): any {
+    const url = 'http://localhost:8080/scoreboard/getStepsScoreboard?dateStart=' + dateStart + '&dateEnd=' + dateEnd;
 
     // Headers
     let headers = new HttpHeaders();

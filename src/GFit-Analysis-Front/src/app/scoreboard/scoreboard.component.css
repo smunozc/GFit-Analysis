@@ -1,0 +1,55 @@
+.contain {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+h2 {
+  margin: 10px;
+}
+
+#table {
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 5px;
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+  width: 90%;
+}
+
+#table tr {
+  border-bottom: 1px solid rgb(59, 59, 59);
+}
+
+#table tr td {
+  padding: 10px;
+}
+
+@media screen and (max-width: 300px) {
+  .contain {
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .contain {
+    padding: 0 20px;
+  }
+
+  h1 {
+    text-align: start;
+  }
+}

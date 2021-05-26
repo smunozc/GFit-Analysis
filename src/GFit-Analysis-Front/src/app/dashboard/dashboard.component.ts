@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
 
-    this.timerSubscription = timer(0, 2000).subscribe(() => {
+    this.timerSubscription = timer(0, 1000).subscribe(() => {
 
       if (this.exerciseDataSent) {
 
@@ -264,7 +264,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
             let todayDate: Date = new Date();
             let date: Date = new Date(parseInt(caloriesWeek[i].startTimeMillis));
-            let simpleDate: string = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
+            let simpleDate: string = date.getFullYear() + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + (date.getDate())).slice(-2);
 
             if (date <= todayDate) {
               // console.log(simpleDate);
