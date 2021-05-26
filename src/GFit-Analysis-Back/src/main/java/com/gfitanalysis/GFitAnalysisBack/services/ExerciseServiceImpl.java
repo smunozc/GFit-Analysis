@@ -29,6 +29,11 @@ public class ExerciseServiceImpl implements ExerciseServiceI {
 	public List<Exercise> getAll() {
 		return this.exerciseRepository.findAll();
 	}
+	
+	@Override
+	public List<Exercise> getByDateRange(String dateFirst, String dateLast) {
+		return this.exerciseRepository.findByDateRange(dateFirst, dateLast);
+	}
 
 	@Override
 	public Exercise save(Exercise exercise) {

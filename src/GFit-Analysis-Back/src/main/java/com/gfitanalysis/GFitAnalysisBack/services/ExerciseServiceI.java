@@ -12,6 +12,8 @@ public interface ExerciseServiceI {
 	public Exercise getByDateAndUser(String date, User user);
 	
 	public List<Exercise> getAll();
+	
+	public List<Exercise> getByDateRange(String dateFirst, String dateLast);
 
 	public Exercise save(Exercise exercise);
 
