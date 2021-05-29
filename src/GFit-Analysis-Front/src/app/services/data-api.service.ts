@@ -89,10 +89,6 @@ export class DataApiService {
       let mondayString = monday.getFullYear() + "/" + ("0" + (monday.getMonth() + 1)).slice(-2) + "/" + ("0" + (monday.getDate())).slice(-2);
       let sundayString = sunday.getFullYear() + "/" + ("0" + (sunday.getMonth() + 1)).slice(-2) + "/" + ("0" + (sunday.getDate())).slice(-2);
 
-      this.getScoreboard(mondayString, sundayString).subscribe(data => {
-        localStorage.setItem('scoreboard', JSON.stringify(data));
-      });
-
       // Body of the POST request
       const body: any = {
         "aggregateBy": [{
