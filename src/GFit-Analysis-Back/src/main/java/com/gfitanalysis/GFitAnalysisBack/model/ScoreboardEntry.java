@@ -2,15 +2,16 @@ package com.gfitanalysis.GFitAnalysisBack.model;
 
 import java.io.Serializable;
 
-public class ScoreboardEntry implements Serializable {
+public class ScoreboardEntry implements Serializable, Comparable<ScoreboardEntry> {
 
 	private static final long serialVersionUID = -3135515172358837847L;
-	
+
 	private User user;
-	
+
 	private Integer score;
-	
-	public ScoreboardEntry() {}
+
+	public ScoreboardEntry() {
+	}
 
 	public ScoreboardEntry(User user, Integer score) {
 		super();
@@ -57,6 +58,14 @@ public class ScoreboardEntry implements Serializable {
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(ScoreboardEntry u) {
+		if (getScore() == null || u.getScore()== null) {
+			return 0;
+		}
+		return getScore().compareTo(u.getScore());
 	}
 
 }

@@ -1,12 +1,11 @@
 package com.gfitanalysis.GFitAnalysisBack.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -54,16 +53,14 @@ public class ScoreboardController {
 				
 			}
 			
-			// Sort classification in descending order.
-			Map<User, Integer> sortedClassification = classification.entrySet()
-	                .stream()
-	                .sorted((Map.Entry.comparingByValue()))
-	                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-			
-			for(Entry<User, Integer> e : sortedClassification.entrySet()) {
+			for(Entry<User, Integer> e : classification.entrySet()) {
 				ScoreboardEntry scoreboardEntry = new ScoreboardEntry(e.getKey(), e.getValue());
 				scoreboard.add(scoreboardEntry);
 			}
+			
+			// Sort by scores.
+			Collections.sort(scoreboard);
+			Collections.reverse(scoreboard);
 			
 			return scoreboard;
 			

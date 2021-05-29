@@ -5,7 +5,7 @@
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-top: 10px;
   text-align: center;
 }
@@ -16,20 +16,78 @@ h2 {
 
 #table {
   background-color: white;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   border-radius: 5px;
   margin: 30px auto;
-  padding: 10px;
   text-align: center;
   width: 90%;
 }
 
 #table tr {
-  border-bottom: 1px solid rgb(59, 59, 59);
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
 }
 
 #table tr td {
+  border-bottom: 3px solid rgb(148, 148, 148);
+  border-style: none solid solid none;
+  font-size: 1.1rem;
   padding: 10px;
+}
+
+#table tr:nth-child(1) {
+  background: #4ce6e6;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#table tr:nth-child(2) td {
+  border-bottom: 3px solid rgb(255, 223, 44);
+}
+
+#table tr:nth-child(2):hover {
+  background-color: rgb(255, 223, 44);
+  color: black;
+}
+
+#table tr:nth-child(3) td {
+  border-bottom: 3px solid rgb(216, 216, 216);
+}
+
+#table tr:nth-child(3):hover {
+  background-color: rgb(216, 216, 216);
+  color: black;
+}
+
+#table tr:nth-child(4) td {
+  border-bottom: 3px solid rgb(235, 115, 35);
+}
+
+#table tr:nth-child(4):hover {
+  background-color: rgb(235, 115, 35);
+  color: black;
+}
+
+#table tr th{
+  border-style: none solid solid none;
+  border-top: solid none;
+  font-size: 1.2rem;
+  padding: 0 10px;
+}
+
+#table tr th:first-child{
+  border-top-left-radius: 5px;
+}
+
+#table tr th:last-child{
+  border-top-right-radius: 5px;
+}
+
+#table tr td:nth-child(1), #table tr th:nth-child(1) {
+  text-align: start;
 }
 
 @media screen and (max-width: 300px) {
@@ -50,6 +108,19 @@ h2 {
   }
 
   h1 {
+    font-size: 4rem;
     text-align: start;
+  }
+
+  #table{
+    width: 90%;
+  }
+
+  #table tr td{
+    font-size: 1.6rem;
+  }
+
+  #table tr th{
+    font-size: 2rem;
   }
 }
