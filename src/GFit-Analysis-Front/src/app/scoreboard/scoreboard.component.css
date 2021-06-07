@@ -45,11 +45,11 @@ h2 {
 }
 
 #table tr:nth-child(2) td {
-  border-bottom: 3px solid rgb(255, 223, 44);
+  border-bottom: 3px solid rgb(255,215,0)
 }
 
 #table tr:nth-child(2):hover {
-  background-color: rgb(255, 223, 44);
+  background-color: rgb(255,215,0);
   color: black;
 }
 
@@ -88,6 +88,11 @@ h2 {
 
 #table tr td:nth-child(1), #table tr th:nth-child(1) {
   text-align: start;
+}
+
+.spinner-border {
+  color: rgb(62, 233, 255);
+  margin: 20px 20px;
 }
 
 @media screen and (max-width: 300px) {

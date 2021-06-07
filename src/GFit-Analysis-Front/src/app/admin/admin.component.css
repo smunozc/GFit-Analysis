@@ -9,7 +9,8 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2,
+#addReward {
   margin: 10px;
 }
 
@@ -27,7 +28,7 @@ h2 {
   border-bottom: 1px solid rgb(59, 59, 59);
 }
 
-#table tr td{
+#table tr td {
   padding: 10px;
 }
 
@@ -35,8 +36,20 @@ h2 {
   text-align: start;
 }
 
-#table tr td:nth-child(4), #table tr td:nth-child(3){
-  text-align: center;
+#table tr td:nth-child(6) {
+  width: 5rem;
+}
+
+.form-select {
+  width: 15%;
+}
+
+.rewardImg {
+  width: 100%;
+}
+
+.sw-label{
+  padding-top: 20px;
 }
 
 @media screen and (min-width: 1024px) {
