@@ -15,6 +15,8 @@ public interface RewardServiceI {
 
 	public Reward save(Reward reward);
 	
+	public void delete(Reward reward);
+	
 	public Set<Reward> getByDataTypeAndConditionNum(DataType dataType, Integer conditionNum);
 	
 	public List<Reward> getAll();

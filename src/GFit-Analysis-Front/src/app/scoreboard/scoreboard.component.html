@@ -16,8 +16,10 @@
       </tr>
     </table>
 
-    <ng-template>
-      <h2>Scoreboard could not be retrieved</h2>
+    <ng-template #notRetrieved>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </ng-template>
 
   </div>

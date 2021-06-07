@@ -31,6 +31,11 @@ public class RewardServiceImpl implements RewardServiceI {
 	public Reward save(Reward reward) {
 		return this.rewardRepository.save(reward);
 	}
+	
+	@Override
+	public void delete(Reward reward) {
+		this.rewardRepository.delete(reward);
+	}
 
 	@Override
 	public Set<Reward> getByDataTypeAndConditionNum(DataType dataType, Integer conditionNum) {

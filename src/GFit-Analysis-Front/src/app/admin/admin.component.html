@@ -1,26 +1,65 @@
 <div class="contain" *ngIf="hasBackend; else elseBlock">
-    <h1>ADMINISTRATION PANEL</h1>
+  <h1>ADMINISTRATION PANEL</h1>
+
+  <select class="form-select" id="managerSelect" (change)="changeManagementScreen($event)">
+    <option value="userManage">User Management</option>
+    <option value="rewardManage">Reward Management</option>
+  </select>
+
+  <div *ngIf="isUserManager; else rewardManage">
+
     <h2>List of users</h2>
     <table id="table">
-        <tr>
-            <th>Display Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Delete</th>
-        </tr>
-        <tr *ngFor="let user of userList; index as i">
-            <td>{{user.displayName}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.role}}</td>
-            <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
-        </tr>
+      <tr>
+        <th>Display Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let user of userList">
+        <td>{{user.displayName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td><button class="btn btn-danger" (click)="delete(user)">Delete</button></td>
+      </tr>
     </table>
+
+  </div>
+
+  <ng-template #rewardManage>
+    <div>
+      <h2>List of rewards</h2>
+
+      <button class="btn btn-success" id="addReward" (click)="addReward()">Add Reward</button>
+
+      <table id="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Badge Type</th>
+          <th>Data Type</th>
+          <th>Goal</th>
+          <th>Badge Image</th>
+          <th>Delete</th>
+        </tr>
+        <tr *ngFor="let reward of rewardList">
+          <td>{{reward.name}}</td>
+          <td>{{reward.description}}</td>
+          <td>{{reward.badgeType}}</td>
+          <td>{{reward.dataType}}</td>
+          <td>{{reward.conditionNum}}</td>
+          <td><img class="rewardImg" src="{{reward.badgeImg}}" alt="badge image"></td>
+          <td><button class="btn btn-danger" (click)="delete(reward)">Delete</button></td>
+        </tr>
+      </table>
+    </div>
+  </ng-template>
 
 </div>
 
 <ng-template #elseBlock>
-    <div class="contain">
-        <h1>ADMINISTRATION PANEL</h1>
-        <h2>Users management only available with backend services</h2>
-    </div>
+  <div class="contain">
+    <h1>ADMINISTRATION PANEL</h1>
+    <h2>Users management only available with backend services</h2>
+  </div>
 </ng-template>

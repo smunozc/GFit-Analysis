@@ -176,6 +176,63 @@ export class DataApiService {
     return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
   }
 
+  getAllRewards(): any {
+    const url = 'http://localhost:8080/reward/getAllRewards';
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
+  }
+
+  saveReward(reward: any): any {
+    const url = 'http://localhost:8080/reward/save';
+
+    // Request body
+
+    let body: any = {
+      "name": reward.name,
+      "description": reward.description,
+      "badgeType": reward.badgeType,
+      "dataType": reward.dataType,
+      "conditionNum": reward.conditionNum,
+      "badgeImg": reward.badgeImg
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+  }
+
+  deleteReward(reward: any): any {
+    const url = 'http://localhost:8080/reward/delete';
+
+    // Request body
+
+    let body: any = {
+      "name": reward.name,
+      "description": reward.description,
+      "badgeType": reward.badgeType,
+      "dataType": reward.dataType,
+      "conditionNum": reward.conditionNum,
+      "badgeImg": reward.badgeImg
+    }
+
+    // Headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    // POST request with HttpClient Object
+    return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
+  }
+
   getScoreboard(dateStart: string, dateEnd: string): any {
     const url = 'http://localhost:8080/scoreboard/getStepsScoreboard?dateStart=' + dateStart + '&dateEnd=' + dateEnd;
 
@@ -187,7 +244,7 @@ export class DataApiService {
     return this.http.get<any>(url, { headers: headers }).pipe(map(response => response));
   }
 
-  getUnachievedBadges(user: any){
+  getUnachievedBadges(user: any) {
     const url = 'http://localhost:8080/reward/getUnachieved';
 
     // Request body
@@ -208,7 +265,7 @@ export class DataApiService {
     return this.http.post<any>(url, JSON.stringify(body), { headers: headers }).pipe(map(response => response));
   }
 
-  getProgress(user: any){
+  getProgress(user: any) {
     const url = 'http://localhost:8080/user/getProgress';
 
     // Request body
