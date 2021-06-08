@@ -9,9 +9,50 @@ h1 {
   text-align: center;
 }
 
+#managerSelect {
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.managementPanel {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.separator{
+  display: none;
+}
+
+/* Bootstrap 4 text input with search icon */
+.has-search {
+  width: 50%;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+/* --------------------------------------- */
+
 h2,
-#addReward {
+#addReward,
+#userFilter,
+#rewardFilter,
+.has-search {
   margin: 10px;
+  margin-left: 20px;
 }
 
 #table {
@@ -19,6 +60,7 @@ h2,
   border-collapse: collapse;
   border-radius: 5px;
   margin: 30px auto;
+  margin-bottom: 100px;
   padding: 10px;
   text-align: center;
   width: 90%;
@@ -41,20 +83,42 @@ h2,
 }
 
 .form-select {
-  width: 15%;
+  width: 60%;
 }
 
 .rewardImg {
   width: 100%;
 }
 
-.sw-label{
+.sw-label {
   padding-top: 20px;
 }
 
 @media screen and (min-width: 1024px) {
   .contain {
     padding: 0 20px;
+  }
+
+  .managementPanel {
+    flex-wrap: nowrap;
+  }
+
+  .separator{
+    display: block;
+    color: rgba(82, 82, 82, 0.63)
+  }
+
+  .has-search {
+    width: 20%;
+  }
+
+  #managerSelect {
+    margin: 0;
+    margin-bottom: 30px;
+  }
+
+  .form-select {
+    width: 15%;
   }
 
   h1 {

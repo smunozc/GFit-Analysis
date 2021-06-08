@@ -74,7 +74,7 @@ public class RewardController {
 				return false;
 			}
 		} else {
-			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the user should
+			// IN THEORY IT SHOULD NEVER ENTER IN THIS ELSE BLOCK (because the reward should
 			// already exist)
 			System.out.println("It entered in the else block...");
 			return false;
