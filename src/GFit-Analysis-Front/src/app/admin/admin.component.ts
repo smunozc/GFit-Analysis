@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 export class AdminComponent implements OnInit {
 
   userList: Array<any>;
+  userDisplayList: Array<any>;
   rewardList: Array<any>;
+  rewardDisplayList: Array<any>;
   userLoaded: boolean = false;
   hasBackend: boolean = false;
   isUserManager: boolean = true;
@@ -24,11 +26,13 @@ export class AdminComponent implements OnInit {
 
       this.dataApi.getAllUsers().subscribe(users => {
         this.userList = users;
+        this.userDisplayList = users;
         this.userLoaded = true;
       });
 
       this.dataApi.getAllRewards().subscribe(rewards => {
         this.rewardList = rewards;
+        this.rewardDisplayList = rewards;
       });
     }
 
@@ -78,6 +82,12 @@ export class AdminComponent implements OnInit {
                 }
               }
 
+              for (let i = 0; i < this.userDisplayList.length; i++) {
+                if (this.userDisplayList[i].email === object.email) {
+                  this.userDisplayList.splice(i, 1);
+                }
+              }
+
               Toast.fire({
                 icon: 'success',
                 title: 'The user has been successfully deleted'
@@ -123,6 +133,12 @@ export class AdminComponent implements OnInit {
               for (let i = 0; i < this.rewardList.length; i++) {
                 if (this.rewardList[i].name === object.name) {
                   this.rewardList.splice(i, 1);
+                }
+              }
+
+              for (let i = 0; i < this.rewardDisplayList.length; i++) {
+                if (this.rewardDisplayList[i].name === object.name) {
+                  this.rewardDisplayList.splice(i, 1);
                 }
               }
 
@@ -265,11 +281,11 @@ export class AdminComponent implements OnInit {
           case "GOLD":
             badgeImg = "https://drive.google.com/uc?id=1wcP9F3CFin2j2vJVGhGiGGYo1Ad-LznY";
             break;
-        
+
           case "SILVER":
             badgeImg = "https://drive.google.com/uc?id=13JnIy2Hx5woceGRyC0bSpgSv6gV71wGR";
             break;
-          
+
           case "BRONZE":
             badgeImg = "https://drive.google.com/uc?id=1-8KiZsf_0lCJG4AIQShgksyCESUZss0s";
 
@@ -307,15 +323,149 @@ export class AdminComponent implements OnInit {
 
     }
   }
+  
+  // 'e' is the event passed as the function parameter.
 
   changeManagementScreen(e) {
 
     if (e.target.value === 'userManage') {
+      this.userDisplayList = this.userList;
       this.isUserManager = true;
     } else if (e.target.value === 'rewardManage') {
+      this.rewardDisplayList = this.rewardList;
       this.isUserManager = false;
     }
 
+  }
+
+  changeRewardFilter(e) {
+    (<HTMLInputElement>document.getElementById('searchReward')).value = "";
+
+    switch (e.target.value) {
+      case 'gold':
+
+        this.rewardDisplayList = [];
+
+        this.rewardList.forEach(reward => {
+          if (reward.badgeType == 'GOLD') {
+            this.rewardDisplayList.push(reward);
+          }
+        });
+
+        break;
+
+      case 'silver':
+
+        this.rewardDisplayList = [];
+
+        this.rewardList.forEach(reward => {
+          if (reward.badgeType == 'SILVER') {
+            this.rewardDisplayList.push(reward);
+          }
+        });
+
+        break;
+
+      case 'bronze':
+
+        this.rewardDisplayList = [];
+
+        this.rewardList.forEach(reward => {
+          if (reward.badgeType == 'BRONZE') {
+            this.rewardDisplayList.push(reward);
+          }
+        });
+
+        break;
+
+      case 'noFilter':
+
+        this.rewardDisplayList = this.rewardList;
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  changeUserFilter(e) {
+    (<HTMLInputElement>document.getElementById('searchUser')).value = "";
+
+    switch (e.target.value) {
+      case 'user':
+
+        this.userDisplayList = [];
+
+        this.userList.forEach(user => {
+          if (user.role == 'user') {
+            this.userDisplayList.push(user);
+          }
+        });
+
+        break;
+
+      case 'admin':
+
+        this.userDisplayList = [];
+
+        this.userList.forEach(user => {
+          if (user.role == 'admin') {
+            this.userDisplayList.push(user);
+          }
+        });
+
+        break;
+
+      case 'noFilter':
+
+        this.userDisplayList = this.userList;
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  searchByUserEmail(e) {
+    (<HTMLInputElement>document.getElementById('userFilter')).value = "noFilter";
+
+    if (e.target.value == "") {
+      this.userDisplayList = this.userList;
+    } else {
+      this.userDisplayList = [];
+
+      this.userList.forEach(user => {
+
+        let userEmail: string = user.email.toLowerCase();
+        let emailSearched: string = e.target.value.toLowerCase();
+
+        if (userEmail.includes(emailSearched)) {
+          this.userDisplayList.push(user);
+        }
+      });
+    }
+  }
+
+  searchByRewardName(e) {
+    (<HTMLInputElement>document.getElementById('rewardFilter')).value = "noFilter";
+
+    if (e.target.value == "") {
+      this.rewardDisplayList = this.rewardList;
+    } else {
+      this.rewardDisplayList = [];
+      
+      this.rewardList.forEach(reward => {
+
+        let rewardName: string = reward.name.toLowerCase();
+        let nameSearched: string = e.target.value.toLowerCase();
+
+        if (rewardName.includes(nameSearched)) {
+          this.rewardDisplayList.push(reward);
+        }
+      });
+    }
   }
 
 }

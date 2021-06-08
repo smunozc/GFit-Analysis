@@ -2,13 +2,31 @@
   <h1>ADMINISTRATION PANEL</h1>
 
   <select class="form-select" id="managerSelect" (change)="changeManagementScreen($event)">
-    <option value="userManage">User Management</option>
+    <option selected="selected" value="userManage">User Management</option>
     <option value="rewardManage">Reward Management</option>
   </select>
 
   <div *ngIf="isUserManager; else rewardManage">
 
     <h2>List of users</h2>
+
+    <div class="managementPanel">
+
+      <select class="form-select" id="userFilter" (change)="changeUserFilter($event)">
+        <option selected="selected" value="noFilter">No role filter</option>
+        <option value="user">Role user</option>
+        <option value="admin">Role admin</option>
+      </select>
+
+      <h2 class="separator">|</h2>
+
+      <div class="form-group has-search">
+        <i class="bi bi-search form-control-feedback"></i>
+        <input id="searchUser" type="text" class="form-control" placeholder="Search by email" (change)="searchByUserEmail($event)">
+      </div>
+
+    </div>
+
     <table id="table">
       <tr>
         <th>Display Name</th>
@@ -16,7 +34,7 @@
         <th>Role</th>
         <th>Delete</th>
       </tr>
-      <tr *ngFor="let user of userList">
+      <tr *ngFor="let user of userDisplayList">
         <td>{{user.displayName}}</td>
         <td>{{user.email}}</td>
         <td>{{user.role}}</td>
@@ -30,7 +48,26 @@
     <div>
       <h2>List of rewards</h2>
 
-      <button class="btn btn-success" id="addReward" (click)="addReward()">Add Reward</button>
+      
+      <div class="managementPanel">
+        
+        <button class="btn btn-success" id="addReward" (click)="addReward()">Add Reward</button>
+        
+        <select class="form-select" id="rewardFilter" (change)="changeRewardFilter($event)">
+          <option selected="selected" value="noFilter">No filter</option>
+          <option value="gold">Gold badges</option>
+          <option value="silver">Silver badges</option>
+          <option value="bronze">Bronze badges</option>
+        </select>
+
+        <h2 class="separator">|</h2>
+
+        <div class="form-group has-search">
+          <i class="bi bi-search form-control-feedback"></i>
+          <input id="searchReward" type="text" class="form-control" placeholder="Search by name" (change)="searchByRewardName($event)">
+        </div>
+
+      </div>
 
       <table id="table">
         <tr>
@@ -42,7 +79,7 @@
           <th>Badge Image</th>
           <th>Delete</th>
         </tr>
-        <tr *ngFor="let reward of rewardList">
+        <tr *ngFor="let reward of rewardDisplayList">
           <td>{{reward.name}}</td>
           <td>{{reward.description}}</td>
           <td>{{reward.badgeType}}</td>
