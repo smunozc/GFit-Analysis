@@ -35,19 +35,20 @@
   right: 10%;
   text-align: center;
   top: 10%;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+  transition: background-color 0.2s linear;
   width: 3rem;
 }
 
 #logout:hover {
   background-color: #0bb6b6;
-  font-size: 1.5rem;
+  /*font-size: 1.5rem;
   height: 4rem;
   transition-property: all;
   transition-duration: 0.15s;
   transition-timing-function: ease-in;
   text-align: center;
   width: 4rem;
+  */
 }
 
 .btn {
@@ -184,11 +185,13 @@ p {
     width: 4rem;
   }
 
+  /*
   #logout:hover {
     font-size: 1.8rem;
     height: 5rem;
     width: 5rem;
   }
+  */
 
   .badges {
     background-color: rgb(131, 97, 146);

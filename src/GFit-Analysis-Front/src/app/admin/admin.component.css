@@ -105,7 +105,8 @@ h2,
 
   .separator{
     display: block;
-    color: rgba(82, 82, 82, 0.63)
+    color: rgba(82, 82, 82, 0.63);
+    font-weight: 300;
   }
 
   .has-search {
