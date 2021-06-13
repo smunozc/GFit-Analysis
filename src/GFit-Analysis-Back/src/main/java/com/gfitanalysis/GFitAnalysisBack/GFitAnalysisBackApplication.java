@@ -5,9 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.gfitanalysis.GFitAnalysisBack.model.BadgeType;
-import com.gfitanalysis.GFitAnalysisBack.model.DataType;
-import com.gfitanalysis.GFitAnalysisBack.model.Reward;
 import com.gfitanalysis.GFitAnalysisBack.services.ExerciseServiceI;
 import com.gfitanalysis.GFitAnalysisBack.services.RewardServiceI;
 import com.gfitanalysis.GFitAnalysisBack.services.UserServiceI;
@@ -49,6 +46,7 @@ public class GFitAnalysisBackApplication implements CommandLineRunner {
 		
 		//  Rewards for steps
 		
+		/*
 		Reward reward1 = new Reward();
 		Reward reward2 = new Reward();
 		Reward reward3 = new Reward();
@@ -109,6 +107,7 @@ public class GFitAnalysisBackApplication implements CommandLineRunner {
 		rewardService.save(reward4);
 		rewardService.save(reward5);
 		rewardService.save(reward6);
+		*/
 		
 	}
 

@@ -122,7 +122,7 @@ export class DataApiService {
   }
 
   postUserData(exercise: Array<any>, user: any): any {
-    const url = 'http://localhost:8080/user/save';
+    const url = 'https://gfitanalysis-back.herokuapp.com/user/save';
 
     // Request body
 
@@ -145,7 +145,7 @@ export class DataApiService {
   }
 
   deleteUser(user: any): any {
-    const url = 'http://localhost:8080/user/delete';
+    const url = 'https://gfitanalysis-back.herokuapp.com/user/delete';
 
     // Request body
 
@@ -166,7 +166,7 @@ export class DataApiService {
   }
 
   getAllUsers(): any {
-    const url = 'http://localhost:8080/user/getAllUsers';
+    const url = 'https://gfitanalysis-back.herokuapp.com/user/getAllUsers';
 
     // Headers
     let headers = new HttpHeaders();
@@ -177,7 +177,7 @@ export class DataApiService {
   }
 
   getAllRewards(): any {
-    const url = 'http://localhost:8080/reward/getAllRewards';
+    const url = 'https://gfitanalysis-back.herokuapp.com/reward/getAllRewards';
 
     // Headers
     let headers = new HttpHeaders();
@@ -188,7 +188,7 @@ export class DataApiService {
   }
 
   saveReward(reward: any): any {
-    const url = 'http://localhost:8080/reward/save';
+    const url = 'https://gfitanalysis-back.herokuapp.com/reward/save';
 
     // Request body
 
@@ -211,7 +211,7 @@ export class DataApiService {
   }
 
   deleteReward(reward: any): any {
-    const url = 'http://localhost:8080/reward/delete';
+    const url = 'https://gfitanalysis-back.herokuapp.com/reward/delete';
 
     // Request body
 
@@ -234,7 +234,7 @@ export class DataApiService {
   }
 
   getScoreboard(dateStart: string, dateEnd: string): any {
-    const url = 'http://localhost:8080/scoreboard/getStepsScoreboard?dateStart=' + dateStart + '&dateEnd=' + dateEnd;
+    const url = 'https://gfitanalysis-back.herokuapp.com/scoreboard/getStepsScoreboard?dateStart=' + dateStart + '&dateEnd=' + dateEnd;
 
     // Headers
     let headers = new HttpHeaders();
@@ -245,7 +245,7 @@ export class DataApiService {
   }
 
   getUnachievedBadges(user: any) {
-    const url = 'http://localhost:8080/reward/getUnachieved';
+    const url = 'https://gfitanalysis-back.herokuapp.com/reward/getUnachieved';
 
     // Request body
 
@@ -266,7 +266,7 @@ export class DataApiService {
   }
 
   getProgress(user: any) {
-    const url = 'http://localhost:8080/user/getProgress';
+    const url = 'https://gfitanalysis-back.herokuapp.com/user/getProgress';
 
     // Request body
 

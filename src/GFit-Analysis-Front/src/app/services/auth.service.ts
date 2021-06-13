@@ -16,7 +16,7 @@ export class AuthService {
 
     let user = JSON.parse(userString);
 
-    const url = 'http://localhost:8080/user/login';
+    const url = 'https://gfitanalysis-back.herokuapp.com/user/login';
 
     // Request body (user)
     let body: any = {
