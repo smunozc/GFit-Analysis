@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.gfitanalysis.GFitAnalysisBack.model.BadgeType;
 import com.gfitanalysis.GFitAnalysisBack.model.DataType;
 import com.gfitanalysis.GFitAnalysisBack.model.Reward;
-import com.gfitanalysis.GFitAnalysisBack.model.User;
 import com.gfitanalysis.GFitAnalysisBack.services.ExerciseServiceI;
 import com.gfitanalysis.GFitAnalysisBack.services.RewardServiceI;
 import com.gfitanalysis.GFitAnalysisBack.services.UserServiceI;
@@ -34,15 +33,17 @@ public class GFitAnalysisBackApplication implements CommandLineRunner {
 		
 		// User
 		
+		/*
 		User user1 = new User();
 		user1.setDisplayName("manolo");
 		user1.setEmail("manolo@gmail.com");
 		user1.setRole("user");
 		user1.setPhotoURL(null);
+		*/
 		
 		// Add user to database
 		
-		userService.save(user1);
+		/*userService.save(user1);*/
 		
 		// Rewards
 		
