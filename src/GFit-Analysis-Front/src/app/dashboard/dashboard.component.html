@@ -101,22 +101,36 @@
 
   <!-- UNACHIEVED BADGES -->
 
-  <div class="unachieved" *ngIf="unachievedBadges != null; else loadingUnachieved">
+  <div *ngIf="goalsLoaded; else loadingUnachieved">
 
-    <h2>Goals</h2>
+    <div class="unachieved" *ngIf="hasGoalsLeft; else noGoalsLeft">
 
-    <div class="card-wrapper boxShadow" *ngFor="let reward of unachievedBadges">
+      <h2>Goals</h2>
 
-      <div class="card-image">
-        <img src="{{reward.badgeImg}}" alt="Badge">
-      </div>
+      <div class="card-wrapper boxShadow" *ngFor="let reward of unachievedBadges">
 
-      <div class="card-content">
-        <h3>{{reward.name}}</h3>
-        <p>Goal: {{reward.conditionNum}} {{reward.dataType}}</p>
+        <div class="card-image">
+          <img src="{{reward.badgeImg}}" alt="Badge">
+        </div>
+
+        <div class="card-content">
+          <h3>{{reward.name}}</h3>
+          <p>Goal: {{reward.conditionNum}} {{reward.dataType}}</p>
+        </div>
+
       </div>
 
     </div>
+
+    <ng-template #noGoalsLeft>
+      <div class="unachieved">
+
+        <h2>Goals</h2>
+
+        <h4 class="goalsAchieved">All goals have been achieved</h4>
+
+      </div>
+    </ng-template>
 
   </div>
 
