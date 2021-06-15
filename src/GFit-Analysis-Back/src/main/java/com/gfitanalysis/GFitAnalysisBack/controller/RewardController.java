@@ -21,7 +21,7 @@ import com.gfitanalysis.GFitAnalysisBack.services.UserServiceI;
 
 @RestController
 @RequestMapping("/reward")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", exposedHeaders = "Authorization")
+@CrossOrigin(origins = "https://gfit-analysis.web.app", allowedHeaders = "*", exposedHeaders = "Authorization")
 public class RewardController {
 
 	@Autowired

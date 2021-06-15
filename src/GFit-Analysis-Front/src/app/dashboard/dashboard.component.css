@@ -10,8 +10,12 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2, .goalsAchieved {
   margin: 10px;
+}
+
+.goalsAchieved{
+  margin-bottom: 50px;
 }
 
 #buttons-container {
