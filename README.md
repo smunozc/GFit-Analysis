@@ -16,7 +16,7 @@ Este proyecto consistirá en un aplicativo web que muestre un analisis de la API
 
 ## Definir el objetivo de la aplicación
 
-Este aplicativo web mostrará un análisis detallado de los datos extraidos de la API de google Fit en una interfaz fácil de entender. Habrá un ranking de participantes registrados en la web con el objetivo de incentivar a un grupo de personas a una forma de vida más saludable.
+Este aplicativo web mostrará un análisis detallado de los datos extraidos de la API de google Fit en una interfaz fácil de entender. Habrá un ranking de participantes registrados en la web y logros a conseguir por cada usuario, todo esto con el objetivo de incentivar a grupos de personas a una forma de vida más saludable.
 
 ## Prototipo de la Interfaz del proyecto
 
