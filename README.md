@@ -16,7 +16,7 @@ Este proyecto consistirá en un aplicativo web que muestre un analisis de la API
 
 ## Definir el objetivo de la aplicación
 
-Este aplicativo web mostrará un análisis detallado de los datos extraidos de la API de google Fit en una interfaz fácil de entender. Se podrán poner objetivos semanales y habrá un ranking de participantes registrados en la web. Todo esto con el objetivo de incentivar una forma de vida más saludable.
+Este aplicativo web mostrará un análisis detallado de los datos extraidos de la API de google Fit en una interfaz fácil de entender. Habrá un ranking de participantes registrados en la web con el objetivo de incentivar a un grupo de personas a una forma de vida más saludable.
 
 ## Prototipo de la Interfaz del proyecto
 
@@ -24,13 +24,11 @@ En este apartado el alumno insertará la documentación del prototipo del proyec
 
 [Wireframe GFit Analysis](https://jezw6i.axshare.com)
 
-....
-
-....
-
 ## Estructura del Proyecto
 
 En este apartado el alumno explicará el contenido del repositorio y de todas las carpetas relevantes del mismo.
+
+Documentación sobre la aplicación -> [docs/](https://github.com/smunozc/GFit-Analysis/tree/main/docs)
 
 Descripción del proyecto | Stack Tecnológico | Alcance -> [docs/Descripción de proyecto.pdf](https://github.com/smunozc/GFit-Analysis/blob/main/docs/Descripci%C3%B3n%20de%20proyecto.pdf) .
 
@@ -39,3 +37,5 @@ Casos de Uso -> [docs/Casos de Uso/](https://github.com/smunozc/GFit-Analysis/tr
 ## Demostración del proyecto
 
 Vídeo demostrativo que contenga una pequeña demostración de la apariencia del proyecto y de aquello que el proyecto puede hacer. (No más de 2 minutos).
+
+Web Desplegada -> [GFitAnalysis](https://gfit-analysis.web.app/)
